@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Vynce — Add Photos</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;background:#f8f9fa;display:flex;justify-content:center;padding:20px}
+.phone{width:390px;max-width:100%;background:#fff;border-radius:40px;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.15)}
+.header{display:flex;justify-content:space-between;align-items:center;padding:20px 20px 10px}
+.header h1{font-family:Montserrat;font-size:22px;font-weight:600;color:#1a1c2e}
+.header span{font-size:13px;color:#94a3b8}.skip{color:#ff5f6d;font-weight:600;font-size:14px;cursor:pointer}
+.progress{height:4px;background:#e1e3e4;margin:0 20px 24px;border-radius:2px;position:relative}
+.progress::after{content:'';position:absolute;left:0;top:0;height:100%;width:25%;background:linear-gradient(90deg,#ff5f6d,#ff8a6d);border-radius:2px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 20px}
+.photo-slot{aspect-ratio:3/4;border-radius:16px;border:2px dashed #e1e3e4;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#94a3b8;font-size:13px;background:#fafafa;cursor:pointer}
+.photo-slot.filled{border:none;background-size:cover;background-position:center;color:transparent;position:relative}
+.photo-slot.primary{border:2px solid #ff5f6d}
+.photo-slot .add{font-size:28px;margin-bottom:4px}.photo-slot .label{font-size:11px}
+.photo-slot .badge{position:absolute;bottom:8px;left:8px;background:#ff5f6d;color:#fff;font-size:10px;padding:2px 8px;border-radius:999px;font-weight:600}
+.photo-slot .remove{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;background:rgba(0,0,0,.5);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer}
+.info{padding:20px;text-align:center;color:#64748b;font-size:13px;line-height:1.5}
+.info strong{color:#1a1c2e}
+.btn{display:block;width:calc(100% - 40px);margin:0 20px 20px;padding:16px;background:linear-gradient(135deg,#ff5f6d,#ff8a6d);color:#fff;border:none;border-radius:999px;font-family:Montserrat;font-size:16px;font-weight:600;cursor:pointer;box-shadow:0 8px 20px rgba(255,95,109,.25);text-align:center;text-decoration:none}
+.btn:disabled{opacity:.4;cursor:default}
+.nav{display:flex;justify-content:center;gap:8px;padding:16px 20px 24px}
+.dot{width:8px;height:8px;border-radius:50%;background:#e1e3e4}
+.dot.active{background:#ff5f6d;width:24px;border-radius:4px}
+</style></head><body>
+<div class="phone">
+<div class="header"><h1>Your Photos</h1><span class="skip">Skip →</span></div>
+<div class="progress"></div>
+<div class="grid">
+<div class="photo-slot filled primary" style="background-image:url('https://picsum.photos/300/400?1')"><span class="badge">Primary</span><span class="remove">✕</span></div>
+<div class="photo-slot filled" style="background-image:url('https://picsum.photos/300/400?2')"><span class="remove">✕</span></div>
+<div class="photo-slot"><span class="add">+</span><span class="label">Add photo</span></div>
+<div class="photo-slot"><span class="add">+</span><span class="label">Add photo</span></div>
+<div class="photo-slot"><span class="add">+</span><span class="label">Add photo</span></div>
+<div class="photo-slot"><span class="add">+</span><span class="label">Add photo</span></div>
+</div>
+<div class="info"><strong>Add at least 3 photos</strong> to get more matches. Your first photo is your profile picture.</div>
+<button class="btn">Continue (2/6 photos)</button>
+<div class="nav"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+</div></body></html>

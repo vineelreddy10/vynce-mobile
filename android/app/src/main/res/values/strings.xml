@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Vynce</string>
+    <string name="title_activity_main">Vynce</string>
+    <string name="package_name">com.vynce.app</string>
+    <string name="custom_url_scheme">com.vynce.app</string>
+</resources>

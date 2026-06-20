@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Vynce — Screen Inventory</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;background:#f8f9fa;color:#1a1c2e;padding:40px 20px;max-width:1200px;margin:0 auto}
+h1{font-family:Montserrat,sans-serif;font-weight:700;font-size:32px;margin-bottom:4px}
+.sub{color:#64748b;margin-bottom:32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:40px}
+.section{font-family:Montserrat;font-size:22px;font-weight:600;margin:32px 0 16px;padding-bottom:8px;border-bottom:2px solid #ff5f6d;display:flex;align-items:center;gap:10px}
+.badge{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:600}
+.badge-high{background:#fee2e2;color:#dc2626;font-size:11px}
+.badge-med{background:#fef3c7;color:#d97706;font-size:11px}
+.card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e1e3e4}
+.card .frame{height:180px;display:flex;align-items:center;justify-content:center;font-size:40px;background:linear-gradient(135deg,#f8f9fa,#e1e3e4)}
+.card .info{padding:14px}
+.card .info h4{font-size:14px;font-weight:600;margin-bottom:2px}
+.card .info p{font-size:12px;color:#64748b}
+.status{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;display:inline-block;margin-top:4px}
+.status-exists{background:#dcfce7;color:#16a34a}
+.status-stitch{background:#e0e7ff;color:#4338ca}
+.status-missing{background:#fef2f2;color:#ef4444}
+a{text-decoration:none;color:inherit;display:block}
+a:hover .card{box-shadow:0 4px 16px rgba(0,0,0,.08);transform:translateY(-2px);transition:all.2s}
+</style>
+</head><body>
+<h1>Vynce — Screen Inventory</h1>
+<p class="sub">20 existing in Stitch + 12 design references = 32 screens total. Ready for Phase 1 implementation.</p>
+
+<div class="section">Batch 1: Auth Flow <span class="badge badge-high">HIGH — Phase 1</span></div>
+<div class="grid">
+  <a href="batch-1/registration.html"><div class="card"><div class="frame">📝</div><div class="info"><h4>Registration</h4><p>Mobile 390px</p><span class="status status-stitch">Design ref</span></div></div></a>
+  <div class="card"><div class="frame">📝</div><div class="info"><h4>Registration</h4><p>Desktop (needs Stitch)</p><span class="status status-missing">Stitch only</span></div></div>
+  <a href="batch-1/onboarding-photos.html"><div class="card"><div class="frame">📸</div><div class="info"><h4>Onboarding — Photos</h4><p>6-slot grid, primary tag</p><span class="status status-stitch">Design ref</span></div></div></a>
+  <a href="batch-1/onboarding-interests.html"><div class="card"><div class="frame">🏷️</div><div class="info"><h4>Onboarding — Interests</h4><p>Chip selector, 5 min</p><span class="status status-stitch">Design ref</span></div></div></a>
+  <a href="batch-1/onboarding-prompts.html"><div class="card"><div class="frame">💬</div><div class="info"><h4>Onboarding — Prompts</h4><p>3 answer fields</p><span class="status status-stitch">Design ref</span></div></div></a>
+  <a href="batch-1/onboarding-preferences.html"><div class="card"><div class="frame">⚙️</div><div class="info"><h4>Onboarding — Preferences</h4><p>Age, distance, gender</p><span class="status status-stitch">Design ref</span></div></div></a>
+</div>
+
+<div class="section">Batch 2: Discovery & Match <span class="badge badge-med">MEDIUM — Phase 2</span></div>
+<div class="grid">
+  <a href="batch-2/match-animation.html"><div class="card"><div class="frame">❤️</div><div class="info"><h4>Match Animation</h4><p>"It's a Match!" overlay</p><span class="status status-stitch">Design ref</span></div></div></a>
+  <a href="batch-2/match-list.html"><div class="card"><div class="frame">👥</div><div class="info"><h4>Match List</h4><p>2-column grid cards</p><span class="status status-stitch">Design ref</span></div></div></a>
+  <div class="card"><div class="frame">👥</div><div class="info"><h4>Match List</h4><p>Desktop (needs Stitch)</p><span class="status status-missing">Stitch only</span></div></div>
+</div>
+
+<div class="section">Batch 3: Groups & Events <span class="badge badge-med">MEDIUM — Phase 4</span></div>
+<div class="grid">
+  <a href="batch-3/group-detail.html"><div class="card"><div class="frame">🏔️</div><div class="info"><h4>Group Detail</h4><p>Cover, members, events</p><span class="status status-stitch">Design ref</span></div></div></a>
+  <a href="batch-3/event-detail.html"><div class="card"><div class="frame">🎵</div><div class="info"><h4>Event Detail</h4><p>Date, RSVP, attendees</p><span class="status status-stitch">Design ref</span></div></div></a>
+  <div class="card"><div class="frame">🏔️</div><div class="info"><h4>Group Detail</h4><p>Desktop (needs Stitch)</p><span class="status status-missing">Stitch only</span></div></div>
+  <div class="card"><div class="frame">🎵</div><div class="info"><h4>Event Detail</h4><p>Desktop (needs Stitch)</p><span class="status status-missing">Stitch only</span></div></div>
+</div>
+
+<div class="section">Batch 4: Profile & Settings <span class="badge badge-med">MEDIUM — Phase 5</span></div>
+<div class="grid">
+  <a href="batch-4/edit-profile.html"><div class="card"><div class="frame">✏️</div><div class="info"><h4>Edit Profile</h4><p>Edit fields, photos</p><span class="status status-stitch">Design ref</span></div></div></a>
+  <a href="batch-4/settings.html"><div class="card"><div class="frame">⚙️</div><div class="info"><h4>Settings</h4><p>Account, privacy, discovery</p><span class="status status-stitch">Design ref</span></div></div></a>
+  <a href="batch-4/notifications.html"><div class="card"><div class="frame">🔔</div><div class="info"><h4>Notifications</h4><p>Bell, unread badges</p><span class="status status-stitch">Design ref</span></div></div></a>
+</div>
+
+<div class="section" style="margin-top:20px;border-bottom-color:#22c55e">Existing in Stitch <span class="badge" style="background:#dcfce7;color:#16a34a;font-size:11px">20 screens</span></div>
+<div class="grid">
+  <div class="card"><div class="info"><h4>Community Login</h4><p>Mobile + Desktop variants</p><span class="status status-exists">In Stitch</span></div></div>
+  <div class="card"><div class="info"><h4>Discover People</h4><p>Mobile + Desktop</p><span class="status status-exists">In Stitch</span></div></div>
+  <div class="card"><div class="info"><h4>Discovery Feed</h4><p>Mobile (2 variants) + Desktop</p><span class="status status-exists">In Stitch</span></div></div>
+  <div class="card"><div class="info"><h4>Community Profile</h4><p>Mobile + Desktop</p><span class="status status-exists">In Stitch</span></div></div>
+  <div class="card"><div class="info"><h4>My Profile</h4><p>Mobile (Standard Nav)</p><span class="status status-exists">In Stitch</span></div></div>
+  <div class="card"><div class="info"><h4>Messages</h4><p>Mobile (list + detail) + Desktop</p><span class="status status-exists">In Stitch</span></div></div>
+  <div class="card"><div class="info"><h4>Browse Groups</h4><p>Mobile + Desktop</p><span class="status status-exists">In Stitch</span></div></div>
+  <div class="card"><div class="info"><h4>Groups Hub</h4><p>Mobile (Standard Nav)</p><span class="status status-exists">In Stitch</span></div></div>
+  <div class="card"><div class="info"><h4>Events Hub</h4><p>Mobile + Desktop</p><span class="status status-exists">In Stitch</span></div></div>
+  <div class="card"><div class="info"><h4>Likes You</h4><p>Mobile</p><span class="status status-exists">In Stitch</span></div></div>
+  <div class="card"><div class="info"><h4>Community Platform</h4><p>Mobile landing/splash</p><span class="status status-exists">In Stitch</span></div></div>
+</div>
+</body></html>
