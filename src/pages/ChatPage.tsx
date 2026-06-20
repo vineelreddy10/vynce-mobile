@@ -59,7 +59,11 @@ export default function ChatPage() {
   }, [selectedRoom]);
 
   function loadRooms() {
-    frappeApi("list_rooms").then((data) => { if (data) setRooms(data); });
+    if (token) {
+      frappeApi("list_rooms_for_token", { token }).then((data) => { if (data) setRooms(data); });
+    } else {
+      frappeApi("list_rooms").then((data) => { if (data) setRooms(data); });
+    }
   }
 
   function loadMessages(roomId: string) {
