@@ -67,7 +67,7 @@ export default function ChatPage() {
   }
 
   function loadMessages(roomId: string) {
-    frappeApi("get_room_detail", { room_id: roomId }).then((data) => {
+    frappeApi("get_room_detail", { room_id: roomId, token: token || "" }).then((data) => {
       if (data?.events) {
         setMessages(data.events.filter((e: MatrixMessage) => e.type === "m.room.message"));
       }
