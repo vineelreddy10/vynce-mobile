@@ -41,6 +41,7 @@ export default function ChatPage() {
   const [token, setToken] = useState<string | null>(null);
   const [status, setStatus] = useState("loading");
   const pollRef = useRef<number | null>(null);
+  const tokenRef = useRef<string | null>(null);
 
   useEffect(() => {
     frappeApi("get_status").then((s) => {
@@ -59,15 +60,17 @@ export default function ChatPage() {
   }, [selectedRoom]);
 
   function loadRooms() {
-    if (token) {
-      frappeApi("list_rooms_for_token", { token }).then((data) => { if (data) setRooms(data); });
+    const t = tokenRef.current || token;
+    if (t) {
+      frappeApi("list_rooms_for_token", { token: t }).then((data) => { if (data) setRooms(data); });
     } else {
       frappeApi("list_rooms").then((data) => { if (data) setRooms(data); });
     }
   }
 
   function loadMessages(roomId: string) {
-    frappeApi("get_room_detail", { room_id: roomId, token: token || "" }).then((data) => {
+    const t = tokenRef.current || token;
+    frappeApi("get_room_detail", { room_id: roomId, token: t || "" }).then((data) => {
       if (data?.events) {
         setMessages(data.events.filter((e: MatrixMessage) => e.type === "m.room.message"));
       }
@@ -80,7 +83,7 @@ export default function ChatPage() {
   }
 
   function sendMessage() {
-    if (!inputText.trim() || !selectedRoom || !token) return;
+    if (!inputText.trim() || !selectedRoom || !(tokenRef.current || token)) return;
     const text = inputText.trim();
     setInputText("");
     matrixApi("PUT", "/rooms/" + encodeURIComponent(selectedRoom) + "/send/m.room.message/" + Date.now(),
@@ -92,6 +95,7 @@ export default function ChatPage() {
     frappeApi("create_test_room", { name: "Chat " + new Date().toLocaleTimeString() }).then((result) => {
       if (result?.room_id) {
         setToken(result.tokens[0]);
+        tokenRef.current = result.tokens[0];
         loadRooms();
         setTimeout(() => selectRoom(result.room_id), 500);
       }
