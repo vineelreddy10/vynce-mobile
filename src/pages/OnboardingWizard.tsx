@@ -36,7 +36,7 @@ export default function OnboardingWizard() {
 
   const canProceed = () => {
     switch (step) {
-      case 0: return [...new Set(photos.map((p) => p.file?.name || p.url))].length >= 3;
+      case 0: return photos.length >= 3;
       case 1: return interests.length >= 5;
       case 2: return promptAnswers.every((p) => p.answer.trim().length >= 3);
       case 3: return true;
