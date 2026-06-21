@@ -3,6 +3,7 @@ import AuthGuard from "../components/AuthGuard";
 import MainLayout from "../layouts/MainLayout";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import OnboardingPage from "../pages/OnboardingPage";
 import DiscoverPage from "../pages/DiscoverPage";
 import PeoplePage from "../pages/PeoplePage";
 import ChatPage from "../pages/ChatPage";
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "/onboarding",
+    element: <OnboardingPage />,
   },
   {
     element: <AuthGuard />,
