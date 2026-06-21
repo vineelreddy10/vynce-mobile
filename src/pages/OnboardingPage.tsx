@@ -106,7 +106,7 @@ await client.post("/api/method/vynce.api.set_onboarding", {
         gender_preference: prefs.gender_pref,
       });
 
-      queryClient.invalidateQueries({ queryKey: ["session"] });
+      await queryClient.refetchQueries({ queryKey: ["session"] });
       navigate("/discover", { replace: true });
     } catch (err: any) {
       setError(err?.response?.data?._server_messages

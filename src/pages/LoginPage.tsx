@@ -81,7 +81,7 @@ export default function LoginPage() {
     setSubmitting(true);
     try {
       await frappeLogin(email, password);
-      queryClient.invalidateQueries({ queryKey: ["session"] });
+      await queryClient.refetchQueries({ queryKey: ["session"] });
       navigate("/feed", { replace: true });
     } catch {
       setError("Invalid email or password");

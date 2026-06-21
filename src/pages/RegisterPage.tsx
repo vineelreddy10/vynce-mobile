@@ -65,7 +65,6 @@ export default function RegisterPage() {
 
     setSubmitting(true);
     try {
-      queryClient.invalidateQueries({ queryKey: ["session"] });
       await register({
         email: form.email,
         password: form.password,
@@ -73,6 +72,7 @@ export default function RegisterPage() {
         birth_date: form.birth_date,
         gender: form.gender,
       });
+      await queryClient.refetchQueries({ queryKey: ["session"] });
       navigate("/onboarding", { replace: true });
     } catch (err: any) {
       setError(err?.response?.data?._server_messages
