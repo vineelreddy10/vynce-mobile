@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import { ChevronLeft, ChevronRight, Camera, Check } from "lucide-react";
 import client from "../api/client";
 
@@ -22,6 +23,7 @@ const INTERESTS = [
 
 export default function OnboardingPage() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [step, setStep] = useState(0);
   const [photos, setPhotos] = useState<string[]>([""]);
   const [selectedInterests, setSelectedInterests] = useState<string[]>([]);
@@ -104,6 +106,7 @@ await client.post("/api/method/vynce.api.set_onboarding", {
         gender_preference: prefs.gender_pref,
       });
 
+      queryClient.invalidateQueries({ queryKey: ["session"] });
       navigate("/discover", { replace: true });
     } catch (err: any) {
       setError(err?.response?.data?._server_messages

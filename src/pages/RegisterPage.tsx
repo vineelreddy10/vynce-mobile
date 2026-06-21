@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 import { register } from "../api/auth";
 
 function Input({ label, type, id, value, onChange, placeholder, max }: any) {
@@ -16,6 +17,7 @@ function Input({ label, type, id, value, onChange, placeholder, max }: any) {
 
 export default function RegisterPage() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [form, setForm] = useState({
     display_name: "",
     email: "",
@@ -63,6 +65,7 @@ export default function RegisterPage() {
 
     setSubmitting(true);
     try {
+      queryClient.invalidateQueries({ queryKey: ["session"] });
       await register({
         email: form.email,
         password: form.password,
