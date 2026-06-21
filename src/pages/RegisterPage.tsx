@@ -2,6 +2,18 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { register } from "../api/auth";
 
+function Input({ label, type, id, value, onChange, placeholder, max }: any) {
+  return (
+    <div>
+      <label htmlFor={id} className="block text-xs font-semibold text-navy mb-1.5 uppercase tracking-wider">
+        {label}
+      </label>
+      <input id={id} type={type} value={value} onChange={onChange} placeholder={placeholder} max={max}
+        className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all" />
+    </div>
+  );
+}
+
 export default function RegisterPage() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -17,7 +29,7 @@ export default function RegisterPage() {
   const [submitting, setSubmitting] = useState(false);
 
   const update = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
-    setForm({ ...form, [field]: e.target.value });
+    setForm(prev => ({ ...prev, [field]: e.target.value }));
 
   const passwordStrength = (): { label: string; color: string; pct: string } => {
     const pw = form.password;
@@ -68,18 +80,7 @@ export default function RegisterPage() {
     }
   };
 
-  const Input = ({ label, type, id, value, onChange, placeholder, max }: any) => (
-    <div>
-      <label htmlFor={id} className="block text-xs font-semibold text-navy mb-1.5 uppercase tracking-wider">
-        {label}
-      </label>
-      <input id={id} type={type} value={value} onChange={onChange} placeholder={placeholder} max={max}
-        className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all" />
-    </div>
-  );
-
   const strength = passwordStrength();
-
   const today = new Date().toISOString().split("T")[0];
   const maxDate = `${parseInt(today.split("-")[0]) - 18}${today.slice(4)}`;
 
