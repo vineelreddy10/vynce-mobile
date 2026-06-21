@@ -24,7 +24,7 @@ function frappeApi(method: string, params?: Record<string, string>) {
   }).then((r) => r.json()).then((r) => r.message);
 }
 
-function matrixApi(method: string, path: string, body?: unknown, token?: string) {
+function matrixApi(method: string, path: string, body?: unknown, token?: string | null) {
   const headers: Record<string, string> = { "Content-Type": "application/json" };
   if (token) headers["Authorization"] = "Bearer " + token;
   return fetch("/_matrix/client/v3" + path, {
