@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
-import { ChevronLeft, ChevronRight, Camera, Check, Loader2 } from "lucide-react";
-import { uploadPhoto, saveInterests, savePrompts, savePreferences, getInterests } from "../api/profile";
+import { ChevronLeft, ChevronRight, Camera, Check, Loader2, MapPin } from "lucide-react";
+import { uploadPhoto, saveInterests, savePrompts, savePreferences, getInterests, updateProfile } from "../api/profile";
 
 const STEPS = ["Photos", "Interests", "Prompts", "Preferences"];
 const PROMPTS = [
@@ -27,6 +27,7 @@ export default function OnboardingWizard() {
     PROMPTS.slice(0, 3).map((p) => ({ prompt: p, answer: "" }))
   );
   const [prefs, setPrefs] = useState({ age_min: 18, age_max: 60, max_distance_km: 50, gender_preference: "All" });
+  const [location, setLocation] = useState<{lat: number; lng: number; name: string} | null>(null);
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
 
@@ -51,18 +52,19 @@ export default function OnboardingWizard() {
     input.type = "file";
     input.accept = "image/*";
     input.multiple = true;
-    input.onchange = async (e: any) => {
-      const files = Array.from(e.target.files || []) as File[];
+    input.onchange = async (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      const files = Array.from(target.files || []) as File[];
       const remaining = 6 - photos.length;
       const toAdd = files.slice(0, remaining);
       const newPhotos = [...photos, ...toAdd.map((f) => ({ file: f, url: URL.createObjectURL(f), uploading: false }))];
       setPhotos(newPhotos);
 
-      for (const p of newPhotos) {
-        if (p.file && !p.uploading) {
-          try {
-            await uploadPhoto(p.file);
-          } catch {}
+      for (const f of toAdd) {
+        try {
+          await uploadPhoto(f);
+        } catch {
+          console.warn("Photo upload failed");
         }
       }
     };
@@ -77,6 +79,35 @@ export default function OnboardingWizard() {
     setInterests((prev) => prev.includes(title) ? prev.filter((i) => i !== title) : [...prev, title]);
   };
 
+  const requestLocation = () => {
+    if (!navigator.geolocation) {
+      setLocation({ lat: 40.7128, lng: -74.006, name: "New York, NY" });
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const lat = Math.round(pos.coords.latitude * 10000) / 10000;
+        const lng = Math.round(pos.coords.longitude * 10000) / 10000;
+        setLocation({ lat, lng, name: `${lat}, ${lng}` });
+        try {
+          const res = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=10`,
+            { headers: { "Accept-Language": "en" } }
+          );
+          const data = await res.json();
+          if (data?.display_name) {
+            const parts = data.display_name.split(",");
+            setLocation({ lat, lng, name: parts.slice(0, 2).join(",").trim() });
+          }
+        } catch {
+          console.warn("Reverse geocoding failed");
+        }
+      },
+      () => { setLocation({ lat: 40.7128, lng: -74.006, name: "New York, NY" }); },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  };
+
   const handleSave = async () => {
     setSaving(true);
     setError("");
@@ -84,12 +115,16 @@ export default function OnboardingWizard() {
       if (interests.length > 0) await saveInterests(interests);
       const answered = promptAnswers.filter((p) => p.answer.trim());
       if (answered.length > 0) await savePrompts(answered);
+      if (location) {
+        await updateProfile({ location_lat: location.lat, location_lng: location.lng, location_name: location.name });
+      }
       await savePreferences(prefs);
       await queryClient.refetchQueries({ queryKey: ["session"] });
       navigate("/feed", { replace: true });
-    } catch (err: any) {
-      setError(err?.response?.data?._server_messages
-        ? JSON.parse(JSON.parse(err.response.data._server_messages)[0]).message
+    } catch (err: unknown) {
+      const serverMessages = (err as { response?: { data?: { _server_messages?: string } } })?.response?.data?._server_messages;
+      setError(serverMessages
+        ? JSON.parse(JSON.parse(serverMessages)[0]).message
         : "Something went wrong. Please try again.");
     } finally {
       setSaving(false);
@@ -233,6 +268,22 @@ export default function OnboardingWizard() {
                 <option value="F">Women</option>
                 <option value="NB">Non-Binary</option>
               </select>
+            </div>
+            <div className="border-t border-border pt-4">
+              <label className="text-sm font-semibold text-navy mb-2 block">Your Location</label>
+              {location ? (
+                <div className="flex items-center gap-2 bg-teal-50 text-teal text-sm rounded-xl px-4 py-3">
+                  <MapPin className="w-4 h-4" />
+                  {location.name}
+                </div>
+              ) : (
+                <button type="button" onClick={requestLocation}
+                  className="w-full flex items-center justify-center gap-2 bg-white border border-border rounded-xl px-4 py-3 text-sm text-navy hover:border-primary/30 transition-colors">
+                  <MapPin className="w-4 h-4 text-coral" />
+                  Enable Location
+                </button>
+              )}
+              <p className="text-[11px] text-muted-foreground mt-1">Used to show people near you. You can change this later.</p>
             </div>
           </div>
         )}
