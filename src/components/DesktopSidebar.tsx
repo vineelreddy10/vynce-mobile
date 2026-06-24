@@ -1,17 +1,9 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Compass, Users, MessageCircle, User, LogOut, CalendarDays } from "lucide-react";
+import { LogOut, Bell } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
 import { frappeLogout } from "../api/client";
 import { useQueryClient } from "@tanstack/react-query";
-
-const links = [
-  { to: "/feed", label: "Feed", icon: Compass },
-  { to: "/people", label: "Discover People", icon: Users },
-  { to: "/messages", label: "Messages", icon: MessageCircle },
-  { to: "/groups", label: "Browse Groups", icon: Users },
-  { to: "/events", label: "Events Hub", icon: CalendarDays },
-  { to: "/profile", label: "Profile", icon: User },
-];
+import { navItems } from "../config/navigation";
 
 export default function DesktopSidebar() {
   const location = useLocation();
@@ -31,16 +23,24 @@ export default function DesktopSidebar() {
   };
 
   return (
-    <aside className="w-60 h-screen bg-white border-r border-border flex flex-col flex-shrink-0">
+    <aside className="w-60 h-screen bg-white border-r border-border flex flex-col fixed left-0 top-0">
       <div className="p-5 border-b border-border">
-        <div className="flex items-center gap-2">
-          <span className="text-xl">⚡</span>
-          <h1 className="font-headline text-lg text-navy tracking-tight">Vynce</h1>
+        <div className="flex items-center justify-between gap-2">
+          <div className="flex items-center gap-2">
+            <span className="text-xl">⚡</span>
+            <h1 className="font-headline text-lg text-navy tracking-tight">Vynce</h1>
+          </div>
+          <NavLink
+            to="/notifications"
+            className="relative w-9 h-9 rounded-xl flex items-center justify-center hover:bg-muted transition-colors"
+          >
+            <Bell className="h-5 w-5 text-muted-foreground" />
+          </NavLink>
         </div>
       </div>
 
       <nav className="flex-1 py-3 px-3 space-y-1 overflow-y-auto">
-        {links.map(({ to, label, icon: Icon }) => {
+        {navItems.map(({ to, label, icon: Icon }) => {
           const active = isActive(to);
           return (
             <NavLink

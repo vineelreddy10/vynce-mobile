@@ -10,7 +10,7 @@ export default function MainLayout() {
         <DesktopSidebar />
       </div>
       {/* Main content */}
-      <div className="flex-1 pb-20 lg:pb-0 overflow-y-auto">
+      <div className="flex-1 pb-20 lg:pb-0 lg:ml-60 overflow-y-auto">
         <Outlet />
       </div>
       {/* Mobile bottom nav - hidden on desktop */}
