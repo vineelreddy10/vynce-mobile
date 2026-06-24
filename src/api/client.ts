@@ -37,7 +37,6 @@ async function fetchCsrfToken(): Promise<string> {
 client.interceptors.request.use(async (config) => {
   if (
     config.url?.startsWith("/api/method/") &&
-    config.method !== "get" &&
     !config.url.includes("get_csrf_token") &&
     !config.url.includes("ping")
   ) {

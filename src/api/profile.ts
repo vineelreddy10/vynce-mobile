@@ -1,25 +1,8 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import client from "./client";
+import type { VYProfile, DiscoverProfile } from "../types/api";
 
-export interface VYProfile {
-  name: string;
-  user: string;
-  display_name: string;
-  birth_date: string;
-  gender: string;
-  gender_preference: string;
-  bio: string;
-  location_lat: number | null;
-  location_lng: number | null;
-  max_distance_km: number;
-  age_min: number;
-  age_max: number;
-  is_active: boolean;
-  profile_strength: number;
-  photos: { name: string; image: string; order: number; is_primary: boolean }[];
-  prompts: { name: string; prompt: string; answer: string }[];
-  interests: string[];
-}
+export type { VYProfile };
 
 export async function getMyProfile(): Promise<VYProfile> {
   const res = await client.get("/api/method/vynce.profile.get_my_profile");
@@ -82,4 +65,40 @@ export function useUploadPhoto() {
     mutationFn: uploadPhoto,
     onSuccess: () => qc.invalidateQueries({ queryKey: ["myProfile"] }),
   });
+}
+
+export async function updateProfile(data: {
+  location_lat?: number;
+  location_lng?: number;
+  location_name?: string;
+  bio?: string;
+  display_name?: string;
+}) {
+  const res = await client.post("/api/method/vynce.profile.update_profile", data);
+  return res.data.message;
+}
+
+export async function getUserProfile(userId: string): Promise<DiscoverProfile & {
+  prompts: { name: string; prompt: string; answer: string }[];
+  photos: { name: string; image: string; order: number; is_primary: boolean }[];
+  gender: string;
+  is_active: boolean;
+  match_status?: "matched" | "pending" | null;
+  match_id?: string | null;
+  matrix_room_id?: string | null;
+}> {
+  const res = await client.get("/api/method/vynce.discover.get_user_profile", {
+    params: { user: userId },
+  });
+  return res.data.message;
+}
+
+export async function blockUser(userId: string): Promise<{ ok: boolean }> {
+  const res = await client.post("/api/method/vynce.safety.block_user", { user: userId });
+  return res.data.message;
+}
+
+export async function reportUser(userId: string, reason: string): Promise<{ ok: boolean }> {
+  const res = await client.post("/api/method/vynce.safety.report_user", { user: userId, reason });
+  return res.data.message;
 }
