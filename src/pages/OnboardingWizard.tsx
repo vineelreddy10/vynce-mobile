@@ -28,6 +28,9 @@ export default function OnboardingWizard() {
   );
   const [prefs, setPrefs] = useState({ age_min: 18, age_max: 60, max_distance_km: 50, gender_preference: "All" });
   const [location, setLocation] = useState<{lat: number; lng: number; name: string} | null>(null);
+  const [showManualInput, setShowManualInput] = useState(false);
+  const [manualCity, setManualCity] = useState("");
+  const [geocoding, setGeocoding] = useState(false);
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
 
@@ -79,9 +82,33 @@ export default function OnboardingWizard() {
     setInterests((prev) => prev.includes(title) ? prev.filter((i) => i !== title) : [...prev, title]);
   };
 
+  const geocodeManualCity = async () => {
+    if (!manualCity.trim()) return;
+    setGeocoding(true);
+    try {
+      const res = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(manualCity)}&limit=1`,
+        { headers: { "Accept-Language": "en" } }
+      );
+      const data = await res.json();
+      if (data?.[0]) {
+        const lat = Math.round(parseFloat(data[0].lat) * 10000) / 10000;
+        const lng = Math.round(parseFloat(data[0].lon) * 10000) / 10000;
+        const parts = data[0].display_name.split(",");
+        setLocation({ lat, lng, name: parts.slice(0, 2).join(",").trim() });
+      } else {
+        setLocation({ lat: 0, lng: 0, name: manualCity.trim() });
+      }
+    } catch {
+      setLocation({ lat: 0, lng: 0, name: manualCity.trim() });
+    } finally {
+      setGeocoding(false);
+    }
+  };
+
   const requestLocation = () => {
     if (!navigator.geolocation) {
-      setLocation({ lat: 40.7128, lng: -74.006, name: "New York, NY" });
+      setShowManualInput(true);
       return;
     }
     navigator.geolocation.getCurrentPosition(
@@ -103,7 +130,7 @@ export default function OnboardingWizard() {
           console.warn("Reverse geocoding failed");
         }
       },
-      () => { setLocation({ lat: 40.7128, lng: -74.006, name: "New York, NY" }); },
+      () => { setShowManualInput(true); },
       { enableHighAccuracy: true, timeout: 10000 }
     );
   };
@@ -273,15 +300,40 @@ export default function OnboardingWizard() {
               <label className="text-sm font-semibold text-navy mb-2 block">Your Location</label>
               {location ? (
                 <div className="flex items-center gap-2 bg-teal-50 text-teal text-sm rounded-xl px-4 py-3">
-                  <MapPin className="w-4 h-4" />
-                  {location.name}
+                  <MapPin className="w-4 h-4 shrink-0" />
+                  <span className="truncate">{location.name}</span>
+                </div>
+              ) : showManualInput ? (
+                <div className="space-y-2">
+                  <div className="flex gap-2">
+                    <input type="text" value={manualCity}
+                      onChange={(e) => setManualCity(e.target.value)}
+                      placeholder="Enter your city (e.g. San Francisco)"
+                      className="flex-1 rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                      onKeyDown={(e) => e.key === "Enter" && geocodeManualCity()} />
+                    <button type="button" onClick={geocodeManualCity} disabled={geocoding || !manualCity.trim()}
+                      className="shrink-0 w-12 h-[46px] flex items-center justify-center bg-primary text-white rounded-xl hover:opacity-90 disabled:opacity-40 transition-all">
+                      {geocoding ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
+                    </button>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground">City name is used to find people near you.</p>
+                  <button type="button" onClick={requestLocation}
+                    className="text-xs text-coral font-medium hover:underline">
+                    Try device location instead
+                  </button>
                 </div>
               ) : (
-                <button type="button" onClick={requestLocation}
-                  className="w-full flex items-center justify-center gap-2 bg-white border border-border rounded-xl px-4 py-3 text-sm text-navy hover:border-primary/30 transition-colors">
-                  <MapPin className="w-4 h-4 text-coral" />
-                  Enable Location
-                </button>
+                <div className="space-y-2">
+                  <button type="button" onClick={requestLocation}
+                    className="w-full flex items-center justify-center gap-2 bg-white border border-border rounded-xl px-4 py-3 text-sm text-navy hover:border-primary/30 transition-colors">
+                    <MapPin className="w-4 h-4 text-coral" />
+                    Enable Location
+                  </button>
+                  <button type="button" onClick={() => setShowManualInput(true)}
+                    className="w-full text-xs text-muted-foreground hover:text-navy transition-colors">
+                    Or enter location manually
+                  </button>
+                </div>
               )}
               <p className="text-[11px] text-muted-foreground mt-1">Used to show people near you. You can change this later.</p>
             </div>

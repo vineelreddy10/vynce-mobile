@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Sparkles, MapPin, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { getFeed, type DiscoverProfile } from "../api/discover";
 import { useNewMatchesCount, getMatches } from "../api/match";
+import { syncLocationOnce } from "../hooks/useLocationSync";
 
 const events = [
   { title: "Central Park Community Picnic", date: "Sat, Oct 21", time: "2:00 PM", img: "🌳", attending: 42 },
@@ -24,6 +26,13 @@ function PhotoPlaceholder({ name }: { name: string }) {
 export default function DiscoverPage() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
+  // Refresh location when user opens the discover feed so "near you"
+  // results are based on current position, not the last background sync.
+  useEffect(() => {
+    syncLocationOnce();
+  }, []);
+
   const { data: feed = [] } = useQuery({
     queryKey: ["discoverFeed", 1],
     queryFn: () => getFeed(1, 20),
@@ -79,7 +88,7 @@ export default function DiscoverPage() {
                   className="flex-shrink-0 w-36 lg:w-auto bg-white rounded-2xl border border-border p-3 space-y-2 shadow-card hover:shadow-md transition-shadow cursor-pointer"
                   onClick={() => {
                     queryClient.invalidateQueries({ queryKey: ["discoverFeed"] });
-                    navigate("/people");
+                    navigate(`/profile/${profile.user}`);
                   }}
                 >
                   <div className="w-full aspect-square rounded-xl overflow-hidden bg-muted">

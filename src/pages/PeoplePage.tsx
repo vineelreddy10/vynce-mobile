@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useInfiniteQuery, useQueryClient } from "@tanstack/react-query";
 import { MapPin, Heart, X, Star, Users, Loader2 } from "lucide-react";
 import { getFeed, likeUser, type DiscoverProfile } from "../api/discover";
@@ -17,6 +18,7 @@ function PhotoPlaceholder({ name, className }: { name: string; className?: strin
 }
 
 export default function PeoplePage() {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const observerRef = useRef<IntersectionObserver | null>(null);
   const [actionError, setActionError] = useState("");
@@ -154,7 +156,8 @@ export default function PeoplePage() {
             <div
               key={profile.name}
               ref={isLast ? lastCardRef : undefined}
-              className="bg-white rounded-2xl border border-border p-4 flex gap-3 shadow-card hover:shadow-md transition-shadow"
+              className="bg-white rounded-2xl border border-border p-4 flex gap-3 shadow-card hover:shadow-md transition-shadow cursor-pointer"
+              onClick={() => navigate(`/profile/${profile.user}`)}
             >
               <div className="w-16 h-16 lg:w-20 lg:h-20 rounded-xl overflow-hidden bg-muted flex-shrink-0">
                 {profile.primary_photo ? (
@@ -189,21 +192,21 @@ export default function PeoplePage() {
 
               <div className="flex flex-col gap-1.5 flex-shrink-0 self-center">
                 <button
-                  onClick={() => handlePass(profile)}
+                  onClick={(e) => { e.stopPropagation(); handlePass(profile); }}
                   className="w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-muted hover:bg-red-50 flex items-center justify-center transition-colors"
                   title="Pass"
                 >
                   <X className="w-4 h-4 lg:w-5 lg:h-5 text-muted-foreground hover:text-red-500" />
                 </button>
                 <button
-                  onClick={() => handleLike(profile)}
+                  onClick={(e) => { e.stopPropagation(); handleLike(profile); }}
                   className="w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-gradient-to-r from-coral to-orange-400 flex items-center justify-center hover:scale-110 transition-transform"
                   title="Like"
                 >
                   <Heart className="w-4 h-4 lg:w-5 lg:h-5 text-white fill-white" />
                 </button>
                 <button
-                  onClick={() => handleSuperLike(profile)}
+                  onClick={(e) => { e.stopPropagation(); handleSuperLike(profile); }}
                   className="w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-amber-100 hover:bg-amber-200 flex items-center justify-center transition-colors"
                   title="Super Like"
                 >

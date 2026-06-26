@@ -3,6 +3,7 @@ import { RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useAuth } from "./hooks/useAuth";
 import { usePresence } from "./hooks/usePresence";
+import { useLocationSync } from "./hooks/useLocationSync";
 import { createSocket, destroySocket, getSocket } from "./api/socket";
 import { CallProvider } from "./contexts/CallContext";
 import { router } from "./routes";
@@ -34,6 +35,8 @@ function SocketLifecycle() {
 
   // Presence heartbeats (every 60s) + real-time event listener
   usePresence(user);
+  // Continuous location sync (on mount, periodic, on app foreground)
+  useLocationSync();
 
   // Connect/disconnect socket on auth change
   useEffect(() => {

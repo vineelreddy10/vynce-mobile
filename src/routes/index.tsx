@@ -10,6 +10,7 @@ import MatchesPage from "../pages/MatchesPage";
 import ChatPage from "../pages/ChatPage";
 import GroupsPage from "../pages/GroupsPage";
 import GroupDetailPage from "../pages/GroupDetailPage";
+import CreateGroupPage from "../pages/CreateGroupPage";
 import EventsPage from "../pages/EventsPage";
 import EventDetailPage from "../pages/EventDetailPage";
 import ProfilePage from "../pages/ProfilePage";
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
           { path: "matches", element: <MatchesPage /> },
           { path: "messages", element: <ChatPage /> },
           { path: "groups", element: <GroupsPage /> },
+          { path: "groups/create", element: <CreateGroupPage /> },
           { path: "groups/:groupId", element: <GroupDetailPage /> },
           { path: "events", element: <EventsPage /> },
           { path: "events/:eventId", element: <EventDetailPage /> },
