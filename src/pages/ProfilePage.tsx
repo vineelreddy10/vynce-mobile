@@ -37,7 +37,7 @@ export default function ProfilePage() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 text-coral animate-spin" />
+        <Loader2 className="h-8 w-8 text-primary animate-spin" />
       </div>
     );
   }
@@ -48,7 +48,7 @@ export default function ProfilePage() {
         <div className="text-center space-y-3">
           <AlertCircle className="h-10 w-10 text-destructive mx-auto" />
           <p className="text-muted-foreground text-sm">Failed to load profile</p>
-          <button onClick={() => refetch()} className="text-coral text-sm font-headline underline">Try again</button>
+          <button onClick={() => refetch()} className="text-primary text-sm font-headline underline">Try again</button>
         </div>
       </div>
     );
@@ -78,7 +78,7 @@ export default function ProfilePage() {
 
   const bioCard = (
     <div className="bg-white rounded-2xl border border-border p-4 lg:p-5 shadow-card">
-      <h3 className="font-headline text-xs text-navy uppercase tracking-wider mb-2">About Me</h3>
+      <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider mb-2">About Me</h3>
       <p className="text-sm lg:text-base text-muted-foreground leading-relaxed">
         {profile.bio || "No bio yet — tap edit to add one."}
       </p>
@@ -96,7 +96,7 @@ export default function ProfilePage() {
           )}
         </div>
         <div className="text-center mt-3 space-y-1">
-          <h2 className="font-headline text-xl text-navy">
+          <h2 className="font-headline text-xl text-on-surface">
             {profile.display_name}{age ? `, ${age}` : ""}
           </h2>
           {(profile.location_lat != null && profile.location_lng != null) && (
@@ -109,8 +109,8 @@ export default function ProfilePage() {
 
         <div className="mt-4 bg-white rounded-2xl border border-border p-4 shadow-card">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-headline text-navy uppercase tracking-wider">Profile Strength</span>
-            <span className="text-xs font-headline text-coral">{profile.profile_strength}%</span>
+            <span className="text-xs font-headline text-on-surface uppercase tracking-wider">Profile Strength</span>
+            <span className="text-xs font-headline text-primary">{profile.profile_strength}%</span>
           </div>
           <div className="h-2 bg-muted rounded-full overflow-hidden">
             <div className="h-full gradient-sunset rounded-full transition-all duration-500" style={{ width: `${profile.profile_strength}%` }} />
@@ -124,10 +124,10 @@ export default function ProfilePage() {
 
         {profile.interests.length > 0 && (
           <div className="mt-4">
-            <h3 className="font-headline text-xs text-navy uppercase tracking-wider mb-3">Interests</h3>
+            <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider mb-3">Interests</h3>
             <div className="flex flex-wrap gap-2">
               {profile.interests.map((t) => (
-                <span key={t} className="text-xs bg-white border border-border text-navy px-3 py-1.5 rounded-full font-medium">{t}</span>
+                <span key={t} className="text-xs bg-white border border-border text-on-surface px-3 py-1.5 rounded-full font-medium">{t}</span>
               ))}
             </div>
           </div>
@@ -135,11 +135,11 @@ export default function ProfilePage() {
 
         {profile.prompts.length > 0 && (
           <div className="mt-4 space-y-3">
-            <h3 className="font-headline text-xs text-navy uppercase tracking-wider">Prompts</h3>
+            <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider">Prompts</h3>
             {profile.prompts.map((p) => (
               <div key={p.name} className="bg-white rounded-2xl border border-border p-4 shadow-card">
-                <p className="text-xs text-coral font-headline mb-1">{p.prompt}</p>
-                <p className="text-sm text-navy">{p.answer}</p>
+                <p className="text-xs text-primary font-headline mb-1">{p.prompt}</p>
+                <p className="text-sm text-on-surface">{p.answer}</p>
               </div>
             ))}
           </div>
@@ -147,10 +147,10 @@ export default function ProfilePage() {
 
         {otherPhotos.length > 0 && (
           <div className="mt-4">
-            <h3 className="font-headline text-xs text-navy uppercase tracking-wider mb-3">Photos</h3>
+            <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider mb-3">Photos</h3>
             <div className="grid grid-cols-3 gap-2">
               {primaryPhoto && (
-                <div className="aspect-square rounded-xl overflow-hidden bg-muted border-2 border-coral">
+                <div className="aspect-square rounded-xl overflow-hidden bg-muted border-2 border-primary">
                   <img src={primaryPhoto.image} alt="" className="w-full h-full object-cover" />
                 </div>
               )}
@@ -165,7 +165,7 @@ export default function ProfilePage() {
 
         <button
           onClick={() => navigate("/settings")}
-          className="w-full mt-6 py-3 rounded-full border border-border text-navy text-sm font-headline font-semibold uppercase tracking-wider hover:bg-muted transition-colors flex items-center justify-center gap-2"
+          className="w-full mt-6 py-3 rounded-full border border-border text-on-surface text-sm font-headline font-semibold uppercase tracking-wider hover:bg-muted transition-colors flex items-center justify-center gap-2"
         >
           <Settings className="w-4 h-4" />
           Settings
@@ -188,7 +188,7 @@ export default function ProfilePage() {
               <span className="text-3xl">{profile.display_name?.charAt(0)?.toUpperCase() || "?"}</span>
             )}
           </div>
-          <h2 className="font-headline text-xl text-navy">
+          <h2 className="font-headline text-xl text-on-surface">
             {profile.display_name}{age ? `, ${age}` : ""}
           </h2>
           {(profile.location_lat != null && profile.location_lng != null) && (
@@ -199,8 +199,8 @@ export default function ProfilePage() {
           )}
           <div className="pt-3 border-t border-border">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-headline text-navy uppercase tracking-wider">Profile Strength</span>
-              <span className="text-xs font-headline text-coral">{profile.profile_strength}%</span>
+              <span className="text-xs font-headline text-on-surface uppercase tracking-wider">Profile Strength</span>
+              <span className="text-xs font-headline text-primary">{profile.profile_strength}%</span>
             </div>
             <div className="h-2 bg-muted rounded-full overflow-hidden mt-2">
               <div className="h-full gradient-sunset rounded-full transition-all duration-500" style={{ width: `${profile.profile_strength}%` }} />
@@ -215,28 +215,28 @@ export default function ProfilePage() {
         {bioCard}
         {profile.interests.length > 0 && (
           <div className="bg-white rounded-2xl border border-border p-5 shadow-card">
-            <h3 className="font-headline text-xs text-navy uppercase tracking-wider mb-3">Interests</h3>
+            <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider mb-3">Interests</h3>
             <div className="flex flex-wrap gap-2">
               {profile.interests.map((t) => (
-                <span key={t} className="text-sm bg-muted text-navy px-4 py-2 rounded-full font-medium">{t}</span>
+                <span key={t} className="text-sm bg-muted text-on-surface px-4 py-2 rounded-full font-medium">{t}</span>
               ))}
             </div>
           </div>
         )}
         {profile.prompts.length > 0 && (
           <div className="space-y-3">
-            <h3 className="font-headline text-xs text-navy uppercase tracking-wider">Prompts</h3>
+            <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider">Prompts</h3>
             {profile.prompts.map((p) => (
               <div key={p.name} className="bg-white rounded-2xl border border-border p-4 shadow-card">
-                <p className="text-xs text-coral font-headline mb-1">{p.prompt}</p>
-                <p className="text-sm text-navy">{p.answer}</p>
+                <p className="text-xs text-primary font-headline mb-1">{p.prompt}</p>
+                <p className="text-sm text-on-surface">{p.answer}</p>
               </div>
             ))}
           </div>
         )}
         <button
           onClick={() => navigate("/settings")}
-          className="w-full py-3 rounded-full border border-border text-navy text-sm font-headline font-semibold uppercase tracking-wider hover:bg-muted transition-colors flex items-center justify-center gap-2"
+          className="w-full py-3 rounded-full border border-border text-on-surface text-sm font-headline font-semibold uppercase tracking-wider hover:bg-muted transition-colors flex items-center justify-center gap-2"
         >
           <Settings className="w-4 h-4" />
           Settings

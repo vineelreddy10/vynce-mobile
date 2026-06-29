@@ -98,12 +98,12 @@ export default function NotificationsPage() {
       <div className="px-5 lg:px-8 pb-24 lg:pb-12 lg:max-w-3xl lg:mx-auto -mt-8 relative z-10">
         {isLoading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="h-8 w-8 text-coral animate-spin" />
+            <Loader2 className="h-8 w-8 text-primary animate-spin" />
           </div>
         ) : notifications.length === 0 ? (
           <div className="bg-white rounded-2xl border border-border shadow-card p-8 text-center">
             <Bell className="w-10 h-10 text-muted-foreground/30 mx-auto mb-3" />
-            <h3 className="font-headline text-sm text-navy mb-1">No Notifications</h3>
+            <h3 className="font-headline text-sm text-on-surface mb-1">No Notifications</h3>
             <p className="text-sm text-muted-foreground">You're all caught up!</p>
           </div>
         ) : (
@@ -118,18 +118,18 @@ export default function NotificationsPage() {
                 }}
                 className={cn(
                   "w-full flex items-start gap-3 p-4 text-left transition-colors hover:bg-muted/30",
-                  !notif.is_read && "bg-coral/[0.03]"
+                  !notif.is_read && "bg-primary/[0.03]"
                 )}
               >
                 <div
                   className={cn(
                     "w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5",
-                    notif.is_read ? "bg-muted" : "bg-coral/10"
+                    notif.is_read ? "bg-muted" : "bg-primary/10"
                   )}
                 >
                   <span
                     className={cn(
-                      notif.is_read ? "text-muted-foreground" : "text-coral"
+                      notif.is_read ? "text-muted-foreground" : "text-primary"
                     )}
                   >
                     <NotificationIcon type={notif.notification_type} />
@@ -140,13 +140,13 @@ export default function NotificationsPage() {
                     <p
                       className={cn(
                         "text-sm truncate",
-                        notif.is_read ? "text-navy font-medium" : "text-navy font-headline"
+                        notif.is_read ? "text-on-surface font-medium" : "text-on-surface font-headline"
                       )}
                     >
                       {notif.title}
                     </p>
                     {!notif.is_read && (
-                      <span className="w-2 h-2 rounded-full bg-coral flex-shrink-0" />
+                      <span className="w-2 h-2 rounded-full bg-primary flex-shrink-0" />
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">

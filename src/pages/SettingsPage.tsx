@@ -79,23 +79,23 @@ export default function SettingsPage() {
       <div className="px-5 lg:px-8 pb-24 lg:pb-12 lg:max-w-3xl lg:mx-auto space-y-6 -mt-8 relative z-10">
         {profileLoading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="h-8 w-8 text-coral animate-spin" />
+            <Loader2 className="h-8 w-8 text-primary animate-spin" />
           </div>
         ) : (
           <>
             <section className="bg-white rounded-2xl border border-border shadow-card overflow-hidden">
               <div className="p-4 border-b border-border">
                 <div className="flex items-center gap-2">
-                  <Eye className="w-4 h-4 text-coral" />
-                  <h2 className="font-headline text-xs text-navy uppercase tracking-wider">Discovery Preferences</h2>
+                  <Eye className="w-4 h-4 text-primary" />
+                  <h2 className="font-headline text-xs text-on-surface uppercase tracking-wider">Discovery Preferences</h2>
                 </div>
               </div>
 
               <div className="p-4 space-y-5">
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <label className="text-sm text-navy font-medium">Maximum Distance</label>
-                    <span className="text-sm text-coral font-headline">{distance} km</span>
+                    <label className="text-sm text-on-surface font-medium">Maximum Distance</label>
+                    <span className="text-sm text-primary font-headline">{distance} km</span>
                   </div>
                   <input
                     type="range"
@@ -103,7 +103,7 @@ export default function SettingsPage() {
                     max={200}
                     value={distance}
                     onChange={(e) => setDistance(Number(e.target.value))}
-                    className="w-full h-1.5 bg-muted rounded-full appearance-none cursor-pointer accent-coral [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-coral [&::-webkit-slider-thumb]:shadow-glow"
+                    className="w-full h-1.5 bg-muted rounded-full appearance-none cursor-pointer accent-coral [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-webkit-slider-thumb]:shadow-glow"
                   />
                   <div className="flex justify-between text-[10px] text-muted-foreground mt-1">
                     <span>1 km</span>
@@ -113,8 +113,8 @@ export default function SettingsPage() {
 
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <label className="text-sm text-navy font-medium">Age Range</label>
-                    <span className="text-sm text-coral font-headline">{ageMin} - {ageMax}</span>
+                    <label className="text-sm text-on-surface font-medium">Age Range</label>
+                    <span className="text-sm text-primary font-headline">{ageMin} - {ageMax}</span>
                   </div>
                   <div className="flex items-center gap-3">
                     <input
@@ -123,7 +123,7 @@ export default function SettingsPage() {
                       max={99}
                       value={ageMin}
                       onChange={(e) => setAgeMin(Number(e.target.value))}
-                      className="w-20 px-3 py-2 rounded-xl border border-input bg-background text-sm text-navy text-center focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral/30"
+                      className="w-20 px-3 py-2 rounded-xl border border-input bg-background text-sm text-on-surface text-center focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30"
                     />
                     <span className="text-muted-foreground text-sm">to</span>
                     <input
@@ -132,13 +132,13 @@ export default function SettingsPage() {
                       max={99}
                       value={ageMax}
                       onChange={(e) => setAgeMax(Number(e.target.value))}
-                      className="w-20 px-3 py-2 rounded-xl border border-input bg-background text-sm text-navy text-center focus:outline-none focus:border-coral focus:ring-1 focus:ring-coral/30"
+                      className="w-20 px-3 py-2 rounded-xl border border-input bg-background text-sm text-on-surface text-center focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/30"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-sm text-navy font-medium block mb-2">Show Me</label>
+                  <label className="text-sm text-on-surface font-medium block mb-2">Show Me</label>
                   <div className="flex gap-2">
                     {["Men", "Women", "Everyone"].map((opt) => (
                       <button
@@ -147,7 +147,7 @@ export default function SettingsPage() {
                         className={cn(
                           "px-4 py-2 rounded-xl text-sm font-medium transition-all",
                           genderPref === opt
-                            ? "bg-coral text-white shadow-glow"
+                            ? "bg-primary text-white shadow-glow"
                             : "bg-muted text-muted-foreground hover:bg-muted/70"
                         )}
                       >
@@ -175,14 +175,14 @@ export default function SettingsPage() {
             <section className="bg-white rounded-2xl border border-border shadow-card overflow-hidden">
               <div className="p-4 border-b border-border">
                 <div className="flex items-center gap-2">
-                  <Bell className="w-4 h-4 text-coral" />
-                  <h2 className="font-headline text-xs text-navy uppercase tracking-wider">Notifications</h2>
+                  <Bell className="w-4 h-4 text-primary" />
+                  <h2 className="font-headline text-xs text-on-surface uppercase tracking-wider">Notifications</h2>
                 </div>
               </div>
               <div className="divide-y divide-border">
                 <label className="flex items-center justify-between p-4 cursor-pointer hover:bg-muted/30 transition-colors">
                   <div>
-                    <p className="text-sm text-navy font-medium">Push Notifications</p>
+                    <p className="text-sm text-on-surface font-medium">Push Notifications</p>
                     <p className="text-xs text-muted-foreground mt-0.5">Get notified about matches and messages</p>
                   </div>
                   <button
@@ -191,7 +191,7 @@ export default function SettingsPage() {
                     onClick={() => setPushNotifs(!pushNotifs)}
                     className={cn(
                       "relative w-11 h-6 rounded-full transition-colors flex-shrink-0",
-                      pushNotifs ? "bg-coral" : "bg-muted"
+                      pushNotifs ? "bg-primary" : "bg-muted"
                     )}
                   >
                     <span
@@ -204,7 +204,7 @@ export default function SettingsPage() {
                 </label>
                 <label className="flex items-center justify-between p-4 cursor-pointer hover:bg-muted/30 transition-colors">
                   <div>
-                    <p className="text-sm text-navy font-medium">Email Notifications</p>
+                    <p className="text-sm text-on-surface font-medium">Email Notifications</p>
                     <p className="text-xs text-muted-foreground mt-0.5">Receive weekly updates and tips</p>
                   </div>
                   <button
@@ -213,7 +213,7 @@ export default function SettingsPage() {
                     onClick={() => setEmailNotifs(!emailNotifs)}
                     className={cn(
                       "relative w-11 h-6 rounded-full transition-colors flex-shrink-0",
-                      emailNotifs ? "bg-coral" : "bg-muted"
+                      emailNotifs ? "bg-primary" : "bg-muted"
                     )}
                   >
                     <span
@@ -230,14 +230,14 @@ export default function SettingsPage() {
             <section className="bg-white rounded-2xl border border-border shadow-card overflow-hidden">
               <div className="p-4 border-b border-border">
                 <div className="flex items-center gap-2">
-                  <Lock className="w-4 h-4 text-coral" />
-                  <h2 className="font-headline text-xs text-navy uppercase tracking-wider">Privacy</h2>
+                  <Lock className="w-4 h-4 text-primary" />
+                  <h2 className="font-headline text-xs text-on-surface uppercase tracking-wider">Privacy</h2>
                 </div>
               </div>
               <div className="divide-y divide-border">
                 <label className="flex items-center justify-between p-4 cursor-pointer hover:bg-muted/30 transition-colors">
                   <div>
-                    <p className="text-sm text-navy font-medium">Show Online Status</p>
+                    <p className="text-sm text-on-surface font-medium">Show Online Status</p>
                     <p className="text-xs text-muted-foreground mt-0.5">Let others see when you're active</p>
                   </div>
                   <button
@@ -246,7 +246,7 @@ export default function SettingsPage() {
                     onClick={() => setShowOnline(!showOnline)}
                     className={cn(
                       "relative w-11 h-6 rounded-full transition-colors flex-shrink-0",
-                      showOnline ? "bg-coral" : "bg-muted"
+                      showOnline ? "bg-primary" : "bg-muted"
                     )}
                   >
                     <span
@@ -259,7 +259,7 @@ export default function SettingsPage() {
                 </label>
                 <label className="flex items-center justify-between p-4 cursor-pointer hover:bg-muted/30 transition-colors">
                   <div>
-                    <p className="text-sm text-navy font-medium">
+                    <p className="text-sm text-on-surface font-medium">
                       <MapPin className="w-3.5 h-3.5 inline mr-1 text-muted-foreground" />
                       Show My Distance
                     </p>
@@ -271,7 +271,7 @@ export default function SettingsPage() {
                     onClick={() => setShowDistance(!showDistance)}
                     className={cn(
                       "relative w-11 h-6 rounded-full transition-colors flex-shrink-0",
-                      showDistance ? "bg-coral" : "bg-muted"
+                      showDistance ? "bg-primary" : "bg-muted"
                     )}
                   >
                     <span
@@ -288,14 +288,14 @@ export default function SettingsPage() {
             <section className="bg-white rounded-2xl border border-border shadow-card overflow-hidden">
               <div className="p-4 border-b border-border">
                 <div className="flex items-center gap-2">
-                  <Shield className="w-4 h-4 text-coral" />
-                  <h2 className="font-headline text-xs text-navy uppercase tracking-wider">Blocked Users</h2>
+                  <Shield className="w-4 h-4 text-primary" />
+                  <h2 className="font-headline text-xs text-on-surface uppercase tracking-wider">Blocked Users</h2>
                 </div>
               </div>
               <div className="divide-y divide-border">
                 {blockedLoading ? (
                   <div className="flex items-center justify-center py-8">
-                    <Loader2 className="h-5 w-5 text-coral animate-spin" />
+                    <Loader2 className="h-5 w-5 text-primary animate-spin" />
                   </div>
                 ) : blockedUsers.length === 0 ? (
                   <div className="p-6 text-center">
@@ -308,7 +308,7 @@ export default function SettingsPage() {
                       key={user.name}
                       className="flex items-center gap-3 p-4 hover:bg-muted/30 transition-colors"
                     >
-                      <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-coral/20 to-teal/10 flex items-center justify-center flex-shrink-0">
+                      <div className="w-10 h-10 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/10 flex items-center justify-center flex-shrink-0">
                         {user.primary_photo ? (
                           <img
                             src={user.primary_photo}
@@ -316,18 +316,18 @@ export default function SettingsPage() {
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <span className="text-sm font-headline text-navy/40">
+                          <span className="text-sm font-headline text-on-surface/40">
                             {user.display_name.charAt(0).toUpperCase()}
                           </span>
                         )}
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-sm text-navy font-medium truncate">{user.display_name}</p>
+                        <p className="text-sm text-on-surface font-medium truncate">{user.display_name}</p>
                       </div>
                       <button
                         onClick={() => unblockMutation.mutate(user.user)}
                         disabled={unblockMutation.isPending}
-                        className="text-xs font-medium text-coral hover:text-coral/80 transition-colors px-3 py-1.5 rounded-lg hover:bg-coral/5 disabled:opacity-50"
+                        className="text-xs font-medium text-primary hover:text-primary/80 transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/5 disabled:opacity-50"
                       >
                         Unblock
                       </button>

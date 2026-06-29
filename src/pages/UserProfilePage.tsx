@@ -60,7 +60,7 @@ export default function UserProfilePage() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 text-coral animate-spin" />
+        <Loader2 className="h-8 w-8 text-primary animate-spin" />
       </div>
     );
   }
@@ -71,7 +71,7 @@ export default function UserProfilePage() {
         <div className="text-center space-y-3">
           <AlertCircle className="h-10 w-10 text-destructive mx-auto" />
           <p className="text-muted-foreground text-sm">Failed to load profile</p>
-          <button onClick={() => refetch()} className="text-coral text-sm font-headline underline">Try again</button>
+          <button onClick={() => refetch()} className="text-primary text-sm font-headline underline">Try again</button>
         </div>
       </div>
     );
@@ -97,8 +97,8 @@ export default function UserProfilePage() {
             className="w-full h-full object-cover"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-coral/20 to-teal/10 flex items-center justify-center">
-            <span className="text-7xl font-headline text-navy/30">
+          <div className="w-full h-full bg-gradient-to-br from-primary/20 to-secondary/10 flex items-center justify-center">
+            <span className="text-7xl font-headline text-on-surface/30">
               {profile.display_name?.charAt(0)?.toUpperCase() || "?"}
             </span>
           </div>
@@ -170,7 +170,7 @@ export default function UserProfilePage() {
         {/* Bio */}
         {profile.bio && (
           <div>
-            <h3 className="font-headline text-xs text-navy uppercase tracking-wider mb-2">About</h3>
+            <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider mb-2">About</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">{profile.bio}</p>
           </div>
         )}
@@ -178,10 +178,10 @@ export default function UserProfilePage() {
         {/* Interests */}
         {profile.interests?.length > 0 && (
           <div>
-            <h3 className="font-headline text-xs text-navy uppercase tracking-wider mb-3">Interests</h3>
+            <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider mb-3">Interests</h3>
             <div className="flex flex-wrap gap-2">
               {profile.interests.map((t: string) => (
-                <span key={t} className="text-xs bg-white border border-border text-navy px-3 py-1.5 rounded-full font-medium">
+                <span key={t} className="text-xs bg-white border border-border text-on-surface px-3 py-1.5 rounded-full font-medium">
                   {t}
                 </span>
               ))}
@@ -192,11 +192,11 @@ export default function UserProfilePage() {
         {/* Prompts */}
         {profile.prompts?.length > 0 && (
           <div className="space-y-3">
-            <h3 className="font-headline text-xs text-navy uppercase tracking-wider">Prompts</h3>
+            <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider">Prompts</h3>
             {profile.prompts.map((p: { name: string; prompt: string; answer: string }) => (
               <div key={p.name} className="bg-white rounded-2xl border border-border p-4 shadow-card">
-                <p className="text-xs text-coral font-headline mb-1">{p.prompt}</p>
-                <p className="text-sm text-navy">{p.answer}</p>
+                <p className="text-xs text-primary font-headline mb-1">{p.prompt}</p>
+                <p className="text-sm text-on-surface">{p.answer}</p>
               </div>
             ))}
           </div>
@@ -205,13 +205,13 @@ export default function UserProfilePage() {
         {/* Photos grid (if more than the hero) */}
         {allPhotos.length > 1 && (
           <div>
-            <h3 className="font-headline text-xs text-navy uppercase tracking-wider mb-3">Photos</h3>
+            <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider mb-3">Photos</h3>
             <div className="grid grid-cols-3 gap-2">
               {allPhotos.map((p, i) => (
                 <div
                   key={p.name}
                   className={`aspect-square rounded-xl overflow-hidden bg-muted cursor-pointer transition-all ${
-                    i === photoIndex ? "ring-2 ring-coral" : ""
+                    i === photoIndex ? "ring-2 ring-primary" : ""
                   }`}
                   onClick={() => setPhotoIndex(i)}
                 >
@@ -225,8 +225,8 @@ export default function UserProfilePage() {
         {/* Profile Strength */}
         <div className="bg-white rounded-2xl border border-border p-4 shadow-card">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-headline text-navy uppercase tracking-wider">Profile Strength</span>
-            <span className="text-xs font-headline text-coral">{profile.profile_strength}%</span>
+            <span className="text-xs font-headline text-on-surface uppercase tracking-wider">Profile Strength</span>
+            <span className="text-xs font-headline text-primary">{profile.profile_strength}%</span>
           </div>
           <div className="h-2 bg-muted rounded-full overflow-hidden">
             <div className="h-full gradient-sunset rounded-full transition-all duration-500" style={{ width: `${profile.profile_strength}%` }} />
@@ -275,7 +275,7 @@ export default function UserProfilePage() {
             <button
               onClick={() => handleLike("Super Like")}
               disabled={liking}
-              className="w-14 h-14 rounded-full bg-teal flex items-center justify-center hover:bg-teal/90 hover:scale-110 active:scale-95 transition-all disabled:opacity-50 shadow-md"
+              className="w-14 h-14 rounded-full bg-secondary flex items-center justify-center hover:bg-secondary/90 hover:scale-110 active:scale-95 transition-all disabled:opacity-50 shadow-md"
             >
               <Star className="w-6 h-6 text-white fill-white" />
             </button>

@@ -168,7 +168,7 @@ export default function OnboardingWizard() {
     <div className="min-h-screen bg-background flex flex-col">
       <div className="flex items-center justify-between px-5 pt-6 pb-2">
         <button onClick={() => step > 0 && setStep(step - 1)} className={`w-9 h-9 rounded-xl flex items-center justify-center ${step === 0 ? "invisible" : "hover:bg-muted"}`}>
-          <ChevronLeft className="w-5 h-5 text-navy" />
+          <ChevronLeft className="w-5 h-5 text-on-surface" />
         </button>
         <p className="text-xs text-muted-foreground font-medium">{step + 1} of {STEPS.length}</p>
         <div className="w-9 h-9" />
@@ -176,14 +176,14 @@ export default function OnboardingWizard() {
       <div className="flex items-center gap-1.5 px-5 pb-3">
         {STEPS.map((_, i) => (
           <div key={i} className="flex-1 h-1 rounded-full transition-all bg-muted overflow-hidden">
-            <div className={`h-full rounded-full transition-all ${i <= step ? "bg-gradient-to-r from-coral to-orange-400" : ""}`}
+            <div className={`h-full rounded-full transition-all ${i <= step ? "bg-gradient-to-r from-primary to-orange-400" : ""}`}
               style={{ width: i < step ? "100%" : i === step ? "50%" : "0%" }} />
           </div>
         ))}
       </div>
 
       <div className="flex-1 px-5 pb-6 overflow-y-auto max-w-md mx-auto w-full">
-        <h2 className="font-headline text-xl text-navy mt-2 mb-1">{STEPS[step]}</h2>
+        <h2 className="font-headline text-xl text-on-surface mt-2 mb-1">{STEPS[step]}</h2>
         <p className="text-sm text-muted-foreground mb-5">
           {step === 0 && "Add at least 3 photos to make a great first impression."}
           {step === 1 && `Pick at least 5 interests (${interests.length} selected).`}
@@ -218,14 +218,14 @@ export default function OnboardingWizard() {
           <div className="space-y-4">
             {Object.entries(groupedInterests).map(([cat, titles]) => (
               <div key={cat}>
-                <h3 className="text-xs font-semibold text-navy uppercase tracking-wider mb-2">{cat}</h3>
+                <h3 className="text-xs font-semibold text-on-surface uppercase tracking-wider mb-2">{cat}</h3>
                 <div className="flex flex-wrap gap-2">
                   {titles.map((title) => {
                     const sel = interests.includes(title);
                     return (
                       <button key={title} onClick={() => toggleInterest(title)}
                         className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-medium transition-all ${
-                          sel ? "bg-gradient-to-r from-coral to-orange-400 text-white shadow-md" : "bg-white border border-border text-navy hover:border-coral/30"
+                          sel ? "bg-gradient-to-r from-primary to-orange-400 text-white shadow-md" : "bg-white border border-border text-on-surface hover:border-primary/30"
                         }`}>
                         {sel && <Check className="w-3 h-3" />}
                         {title}
@@ -247,7 +247,7 @@ export default function OnboardingWizard() {
                   const next = [...promptAnswers];
                   next[idx].prompt = e.target.value;
                   setPromptAnswers(next);
-                }} className="w-full text-sm text-navy font-medium bg-transparent outline-none">
+                }} className="w-full text-sm text-on-surface font-medium bg-transparent outline-none">
                   {PROMPTS.map((opt) => <option key={opt} value={opt}>{opt}</option>)}
                 </select>
                 <textarea value={pa.answer} onChange={(e) => {
@@ -266,7 +266,7 @@ export default function OnboardingWizard() {
         {step === 3 && (
           <div className="space-y-6">
             <div>
-              <label className="text-sm font-semibold text-navy mb-2 block">Age Range</label>
+              <label className="text-sm font-semibold text-on-surface mb-2 block">Age Range</label>
               <div className="flex items-center gap-3">
                 <div className="flex-1">
                   <p className="text-xs text-muted-foreground mb-1">Min: {prefs.age_min}</p>
@@ -281,12 +281,12 @@ export default function OnboardingWizard() {
               </div>
             </div>
             <div>
-              <label className="text-sm font-semibold text-navy mb-2 block">Max Distance: {prefs.max_distance_km} km</label>
+              <label className="text-sm font-semibold text-on-surface mb-2 block">Max Distance: {prefs.max_distance_km} km</label>
               <input type="range" min={1} max={200} value={prefs.max_distance_km}
                 onChange={(e) => setPrefs({ ...prefs, max_distance_km: parseInt(e.target.value) })} className="w-full accent-coral" />
             </div>
             <div>
-              <label className="text-sm font-semibold text-navy mb-2 block">Show Me</label>
+              <label className="text-sm font-semibold text-on-surface mb-2 block">Show Me</label>
               <select value={prefs.gender_preference}
                 onChange={(e) => setPrefs({ ...prefs, gender_preference: e.target.value })}
                 className="w-full bg-white border border-border rounded-xl px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-primary/30">
@@ -297,9 +297,9 @@ export default function OnboardingWizard() {
               </select>
             </div>
             <div className="border-t border-border pt-4">
-              <label className="text-sm font-semibold text-navy mb-2 block">Your Location</label>
+              <label className="text-sm font-semibold text-on-surface mb-2 block">Your Location</label>
               {location ? (
-                <div className="flex items-center gap-2 bg-teal-50 text-teal text-sm rounded-xl px-4 py-3">
+                <div className="flex items-center gap-2 bg-secondary-50 text-secondary text-sm rounded-xl px-4 py-3">
                   <MapPin className="w-4 h-4 shrink-0" />
                   <span className="truncate">{location.name}</span>
                 </div>
@@ -318,19 +318,19 @@ export default function OnboardingWizard() {
                   </div>
                   <p className="text-[11px] text-muted-foreground">City name is used to find people near you.</p>
                   <button type="button" onClick={requestLocation}
-                    className="text-xs text-coral font-medium hover:underline">
+                    className="text-xs text-primary font-medium hover:underline">
                     Try device location instead
                   </button>
                 </div>
               ) : (
                 <div className="space-y-2">
                   <button type="button" onClick={requestLocation}
-                    className="w-full flex items-center justify-center gap-2 bg-white border border-border rounded-xl px-4 py-3 text-sm text-navy hover:border-primary/30 transition-colors">
-                    <MapPin className="w-4 h-4 text-coral" />
+                    className="w-full flex items-center justify-center gap-2 bg-white border border-border rounded-xl px-4 py-3 text-sm text-on-surface hover:border-primary/30 transition-colors">
+                    <MapPin className="w-4 h-4 text-primary" />
                     Enable Location
                   </button>
                   <button type="button" onClick={() => setShowManualInput(true)}
-                    className="w-full text-xs text-muted-foreground hover:text-navy transition-colors">
+                    className="w-full text-xs text-muted-foreground hover:text-on-surface transition-colors">
                     Or enter location manually
                   </button>
                 </div>
