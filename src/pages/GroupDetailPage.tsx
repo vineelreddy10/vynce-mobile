@@ -36,7 +36,7 @@ function MemberAvatar({ photo, name }: { photo: string; name: string }) {
   }
 
   const colors = [
-    "from-coral/30 to-rose-300/30",
+    "from-primary/30 to-rose-300/30",
     "from-teal/30 to-emerald-300/30",
     "from-navy/20 to-indigo-300/30",
     "from-amber-300/30 to-orange-300/30",
@@ -47,7 +47,7 @@ function MemberAvatar({ photo, name }: { photo: string; name: string }) {
     <div
       className={`w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-white shadow-sm bg-gradient-to-br ${color} flex items-center justify-center`}
     >
-      <span className="text-[10px] lg:text-xs font-headline text-navy">{initials}</span>
+      <span className="text-[10px] lg:text-xs font-headline text-on-surface">{initials}</span>
     </div>
   );
 }
@@ -71,7 +71,7 @@ function JoinRequestsModal({
     <div className="fixed inset-0 z-50 bg-black/50 flex items-end sm:items-center justify-center">
       <div className="bg-white rounded-t-2xl sm:rounded-2xl w-full sm:max-w-md max-h-[80vh] overflow-y-auto">
         <div className="flex items-center justify-between p-4 border-b border-border">
-          <h3 className="font-headline text-sm text-navy uppercase tracking-wider">Join Requests</h3>
+          <h3 className="font-headline text-sm text-on-surface uppercase tracking-wider">Join Requests</h3>
           <button onClick={onClose} className="p-1 rounded-full hover:bg-muted/50">
             <X className="w-4 h-4 text-muted-foreground" />
           </button>
@@ -84,7 +84,7 @@ function JoinRequestsModal({
               <div key={req.name} className="flex items-center gap-3 p-3 rounded-xl bg-muted/30">
                 <MemberAvatar photo={req.profile_image} name={req.display_name} />
                 <div className="flex-1 min-w-0">
-                  <p className="font-headline text-xs text-navy">{req.display_name}</p>
+                  <p className="font-headline text-xs text-on-surface">{req.display_name}</p>
                   {req.bio && (
                     <p className="text-[10px] text-muted-foreground truncate">{req.bio}</p>
                   )}
@@ -139,13 +139,13 @@ function PostCard({ post }: { post: GroupPost }) {
           {post.user_photo ? (
             <img src={post.user_photo} alt="" className="w-full h-full object-cover" />
           ) : (
-            <div className="w-full h-full flex items-center justify-center text-xs font-headline text-navy">
+            <div className="w-full h-full flex items-center justify-center text-xs font-headline text-on-surface">
               {post.display_name.charAt(0).toUpperCase()}
             </div>
           )}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-xs font-headline text-navy">{post.display_name}</p>
+          <p className="text-xs font-headline text-on-surface">{post.display_name}</p>
           <RelativeTime time={post.created_at} />
         </div>
       </div>
@@ -192,7 +192,7 @@ export default function GroupDetailPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 text-coral animate-spin" />
+        <Loader2 className="h-8 w-8 text-primary animate-spin" />
       </div>
     );
   }
@@ -205,12 +205,12 @@ export default function GroupDetailPage() {
             onClick={() => navigate(-1)}
             className="w-9 h-9 rounded-full bg-white border border-border flex items-center justify-center shadow-card hover:shadow-md transition-shadow"
           >
-            <ArrowLeft className="w-4 h-4 text-navy" />
+            <ArrowLeft className="w-4 h-4 text-on-surface" />
           </button>
         </div>
         <div className="flex flex-col items-center justify-center py-20 text-center px-5">
           <AlertCircle className="w-10 h-10 text-destructive mb-3" />
-          <h3 className="font-headline text-navy text-lg mb-1">Group not found</h3>
+          <h3 className="font-headline text-on-surface text-lg mb-1">Group not found</h3>
           <p className="text-muted-foreground text-sm">
             {error instanceof Error ? error.message : "This group may no longer exist."}
           </p>
@@ -265,7 +265,7 @@ export default function GroupDetailPage() {
             disabled={busy}
             className={`absolute top-4 right-4 lg:top-5 lg:right-5 px-4 py-2 rounded-full font-headline text-xs font-semibold uppercase tracking-wider transition-all ${
               group.is_member
-                ? "bg-white/90 text-navy hover:bg-white shadow-card"
+                ? "bg-white/90 text-on-surface hover:bg-white shadow-card"
                 : "gradient-sunset text-white shadow-glow hover:scale-105"
             } ${busy ? "opacity-60 cursor-not-allowed" : ""}`}
           >
@@ -291,9 +291,9 @@ export default function GroupDetailPage() {
         <div className="bg-white rounded-2xl border border-border p-4 lg:p-6 shadow-card">
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
-              <h1 className="font-headline text-xl lg:text-2xl text-navy leading-tight">{group.title}</h1>
+              <h1 className="font-headline text-xl lg:text-2xl text-on-surface leading-tight">{group.title}</h1>
               <div className="flex flex-wrap items-center gap-2 lg:gap-3 mt-2">
-                <span className="text-[10px] lg:text-xs bg-muted text-navy px-2 py-0.5 rounded-full font-headline uppercase tracking-wider">
+                <span className="text-[10px] lg:text-xs bg-muted text-on-surface px-2 py-0.5 rounded-full font-headline uppercase tracking-wider">
                   {group.category}
                 </span>
                 <span className="text-xs lg:text-sm text-muted-foreground flex items-center gap-1">
@@ -329,7 +329,7 @@ export default function GroupDetailPage() {
               className={`flex-1 text-xs font-headline font-semibold uppercase tracking-wider py-2.5 rounded-full transition-all ${
                 tab === activeTab
                   ? "gradient-sunset text-white shadow-glow"
-                  : "bg-white border border-border text-muted-foreground hover:text-navy"
+                  : "bg-white border border-border text-muted-foreground hover:text-on-surface"
               }`}
             >
               {tab}
@@ -356,7 +356,7 @@ export default function GroupDetailPage() {
                     onChange={(e) => setPostContent(e.target.value)}
                     placeholder="Share something with the group..."
                     rows={2}
-                    className="w-full px-0 text-sm text-navy placeholder:text-muted-foreground/50 border-0 focus:outline-none resize-none"
+                    className="w-full px-0 text-sm text-on-surface placeholder:text-muted-foreground/50 border-0 focus:outline-none resize-none"
                   />
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2 flex-1">
@@ -364,7 +364,7 @@ export default function GroupDetailPage() {
                         value={postMedia}
                         onChange={(e) => setPostMedia(e.target.value)}
                         placeholder="Image URL (optional)"
-                        className="flex-1 px-3 py-1.5 rounded-lg border border-border text-xs text-navy placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-coral/30"
+                        className="flex-1 px-3 py-1.5 rounded-lg border border-border text-xs text-on-surface placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary/30"
                       />
                       <Image className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                     </div>
@@ -385,7 +385,7 @@ export default function GroupDetailPage() {
                 {/* Posts */}
                 {postsLoading ? (
                   <div className="flex justify-center py-8">
-                    <Loader2 className="w-5 h-5 text-coral animate-spin" />
+                    <Loader2 className="w-5 h-5 text-primary animate-spin" />
                   </div>
                 ) : posts.length === 0 ? (
                   <div className="bg-white rounded-2xl border border-border p-8 shadow-card text-center">
@@ -413,7 +413,7 @@ export default function GroupDetailPage() {
 
         {activeTab === "Members" && (
           <div className="bg-white rounded-2xl border border-border p-4 lg:p-6 shadow-card">
-            <h2 className="font-headline text-sm lg:text-base text-navy uppercase tracking-wider mb-4">
+            <h2 className="font-headline text-sm lg:text-base text-on-surface uppercase tracking-wider mb-4">
               Members ({memberList.length})
             </h2>
             {memberList.length === 0 ? (
@@ -431,8 +431,8 @@ export default function GroupDetailPage() {
                       <MemberAvatar photo={member.profile_image} name={member.display_name} />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-1.5">
-                          <p className="font-headline text-xs lg:text-sm text-navy">{member.display_name}</p>
-                          {isAdmin && <Shield className="w-3 h-3 text-coral" />}
+                          <p className="font-headline text-xs lg:text-sm text-on-surface">{member.display_name}</p>
+                          {isAdmin && <Shield className="w-3 h-3 text-primary" />}
                         </div>
                         <p className="text-[10px] lg:text-xs text-muted-foreground">
                           {isAdmin ? "Admin" : "Member"}
@@ -444,7 +444,7 @@ export default function GroupDetailPage() {
                           <button
                             onClick={() => handleSendMatch(member.user)}
                             disabled={sendMatchMutation.isPending}
-                            className="w-7 h-7 rounded-full bg-gradient-to-r from-coral to-orange text-white flex items-center justify-center hover:scale-110 transition-transform disabled:opacity-50"
+                            className="w-7 h-7 rounded-full bg-gradient-to-r from-primary to-orange text-white flex items-center justify-center hover:scale-110 transition-transform disabled:opacity-50"
                             title="Send match request"
                           >
                             <Flag className="w-3 h-3" />
@@ -454,7 +454,7 @@ export default function GroupDetailPage() {
                               <button
                                 onClick={() => transferAdminMutation.mutate({ groupName: groupId!, targetUser: member.user })}
                                 disabled={transferAdminMutation.isPending}
-                                className="w-7 h-7 rounded-full bg-navy/10 text-navy flex items-center justify-center hover:bg-navy/20 transition-colors"
+                                className="w-7 h-7 rounded-full bg-primary/10 text-on-surface flex items-center justify-center hover:bg-primary/20 transition-colors"
                                 title="Transfer admin"
                               >
                                 <UserCog className="w-3 h-3" />
@@ -483,24 +483,24 @@ export default function GroupDetailPage() {
           <div className="space-y-3">
             {group.description && (
               <div className="bg-white rounded-2xl border border-border p-4 lg:p-6 shadow-card">
-                <h3 className="font-headline text-xs text-navy uppercase tracking-wider mb-2">Description</h3>
+                <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider mb-2">Description</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{group.description}</p>
               </div>
             )}
 
             {group.rules && (
               <div className="bg-white rounded-2xl border border-border p-4 lg:p-6 shadow-card">
-                <h3 className="font-headline text-xs text-navy uppercase tracking-wider mb-2">Group Rules</h3>
+                <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider mb-2">Group Rules</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-wrap">{group.rules}</p>
               </div>
             )}
 
             <div className="bg-white rounded-2xl border border-border p-4 lg:p-6 shadow-card">
-              <h3 className="font-headline text-xs text-navy uppercase tracking-wider mb-3">Details</h3>
+              <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider mb-3">Details</h3>
               <div className="space-y-2.5 text-sm">
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Privacy</span>
-                  <span className="text-navy font-medium flex items-center gap-1">
+                  <span className="text-on-surface font-medium flex items-center gap-1">
                     {group.privacy === "Private" ? (
                       <><Lock className="w-3 h-3" /> Private</>
                     ) : (
@@ -510,17 +510,17 @@ export default function GroupDetailPage() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Category</span>
-                  <span className="text-navy font-medium">{group.category}</span>
+                  <span className="text-on-surface font-medium">{group.category}</span>
                 </div>
                 {group.location && (
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Location</span>
-                    <span className="text-navy font-medium">{group.location}</span>
+                    <span className="text-on-surface font-medium">{group.location}</span>
                   </div>
                 )}
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">Members</span>
-                  <span className="text-navy font-medium">{memberList.length}</span>
+                  <span className="text-on-surface font-medium">{memberList.length}</span>
                 </div>
               </div>
             </div>
@@ -528,16 +528,16 @@ export default function GroupDetailPage() {
             {/* Upcoming Events */}
             {events.length > 0 && (
               <div className="bg-white rounded-2xl border border-border p-4 lg:p-6 shadow-card">
-                <h3 className="font-headline text-xs text-navy uppercase tracking-wider mb-3 flex items-center gap-2">
-                  <CalendarDays className="w-4 h-4 text-coral" /> Upcoming Events
+                <h3 className="font-headline text-xs text-on-surface uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <CalendarDays className="w-4 h-4 text-primary" /> Upcoming Events
                 </h3>
                 <div className="space-y-3">
                   {events.map((ev, i) => (
                     <div
                       key={i}
-                      className="p-3 rounded-xl border border-border hover:border-coral/30 hover:shadow-md transition-all"
+                      className="p-3 rounded-xl border border-border hover:border-primary/30 hover:shadow-md transition-all"
                     >
-                      <h4 className="font-headline text-xs text-navy mb-1">{ev.title}</h4>
+                      <h4 className="font-headline text-xs text-on-surface mb-1">{ev.title}</h4>
                       <div className="space-y-0.5">
                         <p className="text-[10px] text-muted-foreground flex items-center gap-1">
                           <CalendarDays className="w-3 h-3" /> {ev.date}
@@ -560,7 +560,7 @@ export default function GroupDetailPage() {
                 onClick={() => setShowRequests(true)}
                 className="w-full bg-white rounded-2xl border border-border p-4 shadow-card flex items-center justify-between hover:shadow-md transition-shadow"
               >
-                <span className="font-headline text-xs text-navy uppercase tracking-wider">
+                <span className="font-headline text-xs text-on-surface uppercase tracking-wider">
                   Join Requests
                 </span>
                 <span className="flex items-center gap-2">

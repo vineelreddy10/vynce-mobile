@@ -66,9 +66,9 @@ export default function CreateGroupPage() {
           onClick={() => navigate(-1)}
           className="w-9 h-9 rounded-full bg-white border border-border flex items-center justify-center shadow-card hover:shadow-md transition-shadow flex-shrink-0"
         >
-          <ArrowLeft className="w-4 h-4 text-navy" />
+          <ArrowLeft className="w-4 h-4 text-on-surface" />
         </button>
-        <h1 className="font-headline text-xl text-navy">Create Group</h1>
+        <h1 className="font-headline text-xl text-on-surface">Create Group</h1>
       </div>
 
       <div className="px-5 pt-5 space-y-5 max-w-lg mx-auto">
@@ -79,19 +79,19 @@ export default function CreateGroupPage() {
         )}
 
         <div>
-          <label className="block text-xs font-headline font-semibold text-navy uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-headline font-semibold text-on-surface uppercase tracking-wider mb-1.5">
             Title <span className="text-destructive">*</span>
           </label>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Give your group a name"
-            className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-navy placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral"
+            className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-on-surface placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-headline font-semibold text-navy uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-headline font-semibold text-on-surface uppercase tracking-wider mb-1.5">
             Description
           </label>
           <textarea
@@ -99,12 +99,12 @@ export default function CreateGroupPage() {
             onChange={(e) => setDescription(e.target.value)}
             placeholder="What's this group about?"
             rows={3}
-            className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-navy placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral resize-none"
+            className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-on-surface placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-headline font-semibold text-navy uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-headline font-semibold text-on-surface uppercase tracking-wider mb-1.5">
             Category
           </label>
           <div className="flex flex-wrap gap-2">
@@ -115,7 +115,7 @@ export default function CreateGroupPage() {
                 className={`text-xs font-headline font-semibold uppercase tracking-wider px-4 py-2 rounded-full whitespace-nowrap transition-all ${
                   cat === category
                     ? "gradient-sunset text-white shadow-glow"
-                    : "bg-white border border-border text-muted-foreground hover:text-navy"
+                    : "bg-white border border-border text-muted-foreground hover:text-on-surface"
                 }`}
               >
                 {cat}
@@ -125,19 +125,19 @@ export default function CreateGroupPage() {
         </div>
 
         <div>
-          <label className="block text-xs font-headline font-semibold text-navy uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-headline font-semibold text-on-surface uppercase tracking-wider mb-1.5">
             Location
           </label>
           <input
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="e.g. Hyderabad, India"
-            className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-navy placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral"
+            className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-on-surface placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
           />
         </div>
 
         <div>
-          <label className="block text-xs font-headline font-semibold text-navy uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-headline font-semibold text-on-surface uppercase tracking-wider mb-1.5">
             Privacy
           </label>
           <div className="flex gap-2">
@@ -146,7 +146,7 @@ export default function CreateGroupPage() {
               className={`flex-1 flex items-center justify-center gap-2 text-xs font-headline font-semibold uppercase tracking-wider px-4 py-3 rounded-full transition-all ${
                 privacy === "Public"
                   ? "gradient-sunset text-white shadow-glow"
-                  : "bg-white border border-border text-muted-foreground hover:text-navy"
+                  : "bg-white border border-border text-muted-foreground hover:text-on-surface"
               }`}
             >
               <Globe className="w-3.5 h-3.5" /> Public
@@ -156,7 +156,7 @@ export default function CreateGroupPage() {
               className={`flex-1 flex items-center justify-center gap-2 text-xs font-headline font-semibold uppercase tracking-wider px-4 py-3 rounded-full transition-all ${
                 privacy === "Private"
                   ? "gradient-sunset text-white shadow-glow"
-                  : "bg-white border border-border text-muted-foreground hover:text-navy"
+                  : "bg-white border border-border text-muted-foreground hover:text-on-surface"
               }`}
             >
               <Lock className="w-3.5 h-3.5" /> Private
@@ -170,7 +170,7 @@ export default function CreateGroupPage() {
         </div>
 
         <div>
-          <label className="block text-xs font-headline font-semibold text-navy uppercase tracking-wider mb-2">
+          <label className="block text-xs font-headline font-semibold text-on-surface uppercase tracking-wider mb-2">
             Cover Image
           </label>
 
@@ -192,7 +192,7 @@ export default function CreateGroupPage() {
           ) : (
             <div
               onClick={() => coverImageMode === "upload" ? fileInputRef.current?.click() : undefined}
-              className="w-full aspect-[3/1] rounded-xl border-2 border-dashed border-border bg-muted/30 flex flex-col items-center justify-center gap-1.5 cursor-pointer hover:border-coral/50 hover:bg-coral/5 transition-all mb-2"
+              className="w-full aspect-[3/1] rounded-xl border-2 border-dashed border-border bg-muted/30 flex flex-col items-center justify-center gap-1.5 cursor-pointer hover:border-primary/50 hover:bg-primary/5 transition-all mb-2"
             >
               <Image className="w-6 h-6 text-muted-foreground/60" />
               <p className="text-xs text-muted-foreground">Add a cover image</p>
@@ -206,8 +206,8 @@ export default function CreateGroupPage() {
               onClick={() => setCoverImageMode("upload")}
               className={`flex items-center gap-1.5 text-[10px] font-headline font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full transition-all ${
                 coverImageMode === "upload"
-                  ? "bg-navy text-white"
-                  : "bg-white border border-border text-muted-foreground hover:text-navy"
+                  ? "bg-primary text-white"
+                  : "bg-white border border-border text-muted-foreground hover:text-on-surface"
               }`}
             >
               <Upload className="w-3 h-3" /> Upload
@@ -217,8 +217,8 @@ export default function CreateGroupPage() {
               onClick={() => setCoverImageMode("url")}
               className={`flex items-center gap-1.5 text-[10px] font-headline font-semibold uppercase tracking-wider px-3 py-1.5 rounded-full transition-all ${
                 coverImageMode === "url"
-                  ? "bg-navy text-white"
-                  : "bg-white border border-border text-muted-foreground hover:text-navy"
+                  ? "bg-primary text-white"
+                  : "bg-white border border-border text-muted-foreground hover:text-on-surface"
               }`}
             >
               <Link className="w-3 h-3" /> URL
@@ -239,7 +239,7 @@ export default function CreateGroupPage() {
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 disabled={coverUploading}
-                className="w-full flex items-center justify-center gap-2 text-xs font-headline font-semibold uppercase tracking-wider px-4 py-3 rounded-xl border-2 border-dashed border-border bg-white hover:border-coral/50 hover:bg-coral/5 transition-all disabled:opacity-50"
+                className="w-full flex items-center justify-center gap-2 text-xs font-headline font-semibold uppercase tracking-wider px-4 py-3 rounded-xl border-2 border-dashed border-border bg-white hover:border-primary/50 hover:bg-primary/5 transition-all disabled:opacity-50"
               >
                 {coverUploading ? (
                   <>
@@ -259,13 +259,13 @@ export default function CreateGroupPage() {
               value={coverImage}
               onChange={(e) => setCoverImage(e.target.value)}
               placeholder="https://example.com/image.jpg"
-              className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-navy placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral"
+              className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-on-surface placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
             />
           )}
         </div>
 
         <div>
-          <label className="block text-xs font-headline font-semibold text-navy uppercase tracking-wider mb-1.5">
+          <label className="block text-xs font-headline font-semibold text-on-surface uppercase tracking-wider mb-1.5">
             Group Rules
           </label>
           <textarea
@@ -273,7 +273,7 @@ export default function CreateGroupPage() {
             onChange={(e) => setRules(e.target.value)}
             placeholder="Add rules for your group..."
             rows={3}
-            className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-navy placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral resize-none"
+            className="w-full px-4 py-3 rounded-xl border border-border bg-white text-sm text-on-surface placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary resize-none"
           />
         </div>
 

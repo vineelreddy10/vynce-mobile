@@ -44,7 +44,7 @@ function GroupCard({ group, onJoin, onLeave, joining, leaving }: {
         )}
       </div>
       <div>
-        <h3 className="font-headline text-xs lg:text-sm text-navy leading-snug">{group.title}</h3>
+        <h3 className="font-headline text-xs lg:text-sm text-on-surface leading-snug">{group.title}</h3>
         <p className="text-[10px] lg:text-xs text-muted-foreground mt-1 flex items-center gap-1">
           <Users className="w-3 h-3" /> {group.member_count}
         </p>
@@ -61,7 +61,7 @@ function GroupCard({ group, onJoin, onLeave, joining, leaving }: {
         <span className="text-[8px] text-muted-foreground/60">{group.privacy}</span>
       </div>
       <div className="text-[9px] lg:text-[11px] text-muted-foreground/60 line-clamp-2">{group.description}</div>
-      <span className="text-[8px] lg:text-[10px] bg-muted text-navy px-2 py-0.5 rounded-full inline-block">
+      <span className="text-[8px] lg:text-[10px] bg-muted text-on-surface px-2 py-0.5 rounded-full inline-block">
         {group.category}
       </span>
       <button
@@ -127,7 +127,7 @@ export default function GroupsPage() {
       <div className="lg:flex lg:items-end lg:justify-between lg:mb-1">
         <div className="flex items-center justify-between w-full lg:w-auto">
            <div>
-             <h1 className="font-headline text-2xl lg:text-3xl text-navy mb-1">Browse Groups</h1>
+             <h1 className="font-headline text-2xl lg:text-3xl text-on-surface mb-1">Browse Groups</h1>
              <p className="text-muted-foreground text-sm lg:text-base">Find your community</p>
            </div>
            <button
@@ -151,7 +151,7 @@ export default function GroupsPage() {
               className={`text-xs font-headline font-semibold uppercase tracking-wider px-4 py-2 rounded-full whitespace-nowrap transition-all ${
                 cat === activeCategory
                   ? "gradient-sunset text-white shadow-glow"
-                  : "bg-white border border-border text-muted-foreground hover:text-navy"
+                  : "bg-white border border-border text-muted-foreground hover:text-on-surface"
               }`}
             >
               {cat}
@@ -167,12 +167,12 @@ export default function GroupsPage() {
           value={searchQuery}
           onChange={(e) => handleSearchChange(e.target.value)}
           placeholder="Search groups..."
-          className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-border bg-white text-sm text-navy placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+          className="w-full pl-9 pr-4 py-2.5 rounded-xl border border-border bg-white text-sm text-on-surface placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
         />
         {searchQuery && (
           <button
             onClick={() => handleSearchChange("")}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/60 hover:text-navy"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground/60 hover:text-on-surface"
           >
             ×
           </button>
@@ -187,7 +187,7 @@ export default function GroupsPage() {
             className={`flex-shrink-0 text-xs font-headline font-semibold uppercase tracking-wider px-4 py-2 rounded-full whitespace-nowrap transition-all ${
               cat === activeCategory
                 ? "gradient-sunset text-white shadow-glow"
-                : "bg-white border border-border text-muted-foreground hover:text-navy"
+                : "bg-white border border-border text-muted-foreground hover:text-on-surface"
             }`}
           >
             {cat}
@@ -205,7 +205,7 @@ export default function GroupsPage() {
         ) : isError ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <AlertCircle className="w-10 h-10 text-destructive mb-3" />
-            <h3 className="font-headline text-navy text-lg mb-1">Failed to load groups</h3>
+            <h3 className="font-headline text-on-surface text-lg mb-1">Failed to load groups</h3>
             <p className="text-muted-foreground text-sm">
               {error instanceof Error ? error.message : "Something went wrong"}
             </p>
@@ -213,7 +213,7 @@ export default function GroupsPage() {
         ) : groups.length === 0 ? (
            <div className="flex flex-col items-center justify-center py-20 text-center">
              <Users className="w-10 h-10 text-muted-foreground mb-3" />
-             <h3 className="font-headline text-navy text-lg mb-1">No groups found</h3>
+             <h3 className="font-headline text-on-surface text-lg mb-1">No groups found</h3>
              <p className="text-muted-foreground text-sm mb-4">
                {activeCategory === "All"
                  ? "There are no groups yet. Be the first to create one!"
