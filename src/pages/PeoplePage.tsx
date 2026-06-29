@@ -8,11 +8,11 @@ const PAGE_SIZE = 20;
 const ERROR_CLEAR_MS = 5000;
 
 function PhotoPlaceholder({ name, className }: { name: string; className?: string }) {
-  const colors = ["from-coral/20 to-teal/10", "from-rose-200 to-amber-100", "from-sky-200 to-indigo-100", "from-emerald-200 to-lime-100"];
+  const colors = ["from-primary/20 to-secondary/10", "from-rose-200 to-amber-100", "from-sky-200 to-indigo-100", "from-emerald-200 to-lime-100"];
   const color = colors[name.length % colors.length];
   return (
     <div className={`bg-gradient-to-br ${color} flex items-center justify-center ${className || ""}`}>
-      <span className="text-3xl lg:text-4xl font-headline text-navy/40">{name.charAt(0).toUpperCase()}</span>
+      <span className="text-3xl lg:text-4xl font-headline text-on-surface/40">{name.charAt(0).toUpperCase()}</span>
     </div>
   );
 }
@@ -110,7 +110,7 @@ export default function PeoplePage() {
   if (isPending) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 text-coral animate-spin" />
+        <Loader2 className="h-8 w-8 text-primary animate-spin" />
       </div>
     );
   }
@@ -130,7 +130,7 @@ export default function PeoplePage() {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-5">
         <div className="text-center space-y-3">
-          <Heart className="h-12 w-12 text-coral/30 mx-auto" />
+          <Heart className="h-12 w-12 text-primary/30 mx-auto" />
           <p className="text-muted-foreground text-sm">No more profiles to show — check back later!</p>
         </div>
       </div>
@@ -139,7 +139,7 @@ export default function PeoplePage() {
 
   return (
     <div className="min-h-screen bg-background pb-6 px-5 pt-6 lg:px-8 lg:pt-8 lg:max-w-5xl lg:mx-auto">
-      <h1 className="font-headline text-2xl lg:text-3xl text-navy mb-1">Discover People</h1>
+      <h1 className="font-headline text-2xl lg:text-3xl text-on-surface mb-1">Discover People</h1>
       <p className="text-muted-foreground text-sm lg:text-base mb-5">
         Showing {allProfiles.length} people
       </p>
@@ -167,7 +167,7 @@ export default function PeoplePage() {
                 )}
               </div>
               <div className="flex-1 min-w-0">
-                <h3 className="font-headline text-base lg:text-lg text-navy">
+                <h3 className="font-headline text-base lg:text-lg text-on-surface">
                   {profile.display_name}{profile.age ? `, ${profile.age}` : ""}
                 </h3>
                 {profile.location_name && (
@@ -180,11 +180,11 @@ export default function PeoplePage() {
                 )}
                 <div className="flex gap-1.5 mt-2 flex-wrap">
                   {profile.interests.slice(0, 4).map((tag: string) => (
-                    <span key={tag} className="text-[10px] lg:text-xs bg-muted text-navy px-2 py-0.5 rounded-full">{tag}</span>
+                    <span key={tag} className="text-[10px] lg:text-xs bg-muted text-on-surface px-2 py-0.5 rounded-full">{tag}</span>
                   ))}
                 </div>
                 {profile.common_interests_count > 0 && (
-                  <p className="text-[10px] lg:text-xs text-teal font-semibold mt-2 flex items-center gap-1">
+                  <p className="text-[10px] lg:text-xs text-secondary font-semibold mt-2 flex items-center gap-1">
                     <Users className="w-3 h-3" /> {profile.common_interests_count} common interests
                   </p>
                 )}
@@ -200,7 +200,7 @@ export default function PeoplePage() {
                 </button>
                 <button
                   onClick={(e) => { e.stopPropagation(); handleLike(profile); }}
-                  className="w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-gradient-to-r from-coral to-orange-400 flex items-center justify-center hover:scale-110 transition-transform"
+                  className="w-9 h-9 lg:w-10 lg:h-10 rounded-full bg-gradient-to-r from-primary to-orange-400 flex items-center justify-center hover:scale-110 transition-transform"
                   title="Like"
                 >
                   <Heart className="w-4 h-4 lg:w-5 lg:h-5 text-white fill-white" />
@@ -220,7 +220,7 @@ export default function PeoplePage() {
 
       {isFetchingNextPage && (
         <div className="flex justify-center py-6">
-          <Loader2 className="h-6 w-6 text-coral animate-spin" />
+          <Loader2 className="h-6 w-6 text-primary animate-spin" />
         </div>
       )}
 

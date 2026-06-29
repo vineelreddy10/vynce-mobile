@@ -20,7 +20,7 @@ export default function MatchesPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 text-coral animate-spin" />
+        <Loader2 className="h-8 w-8 text-primary animate-spin" />
       </div>
     );
   }
@@ -57,7 +57,7 @@ export default function MatchesPage() {
                 </div>
                 <span
                   className={`absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-background ${
-                    isOnline(match.user.last_active) ? "bg-teal" : "bg-muted-foreground/40"
+                    isOnline(match.user.last_active) ? "bg-secondary" : "bg-muted-foreground/40"
                   }`}
                 />
               </div>
@@ -66,7 +66,7 @@ export default function MatchesPage() {
                 <h3 className="font-semibold text-sm">
                   {match.user.display_name}{match.user.age ? `, ${match.user.age}` : ""}
                 </h3>
-                <p className={`text-xs ${isOnline(match.user.last_active) ? "text-teal" : "text-muted-foreground"}`}>
+                <p className={`text-xs ${isOnline(match.user.last_active) ? "text-secondary" : "text-muted-foreground"}`}>
                   {lastOnlineText(match.user.last_active)}
                 </p>
               </div>

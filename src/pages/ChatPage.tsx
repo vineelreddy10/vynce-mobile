@@ -106,7 +106,7 @@ export default function ChatPage() {
   if (initializing) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <Loader2 className="h-8 w-8 text-coral animate-spin" />
+        <Loader2 className="h-8 w-8 text-primary animate-spin" />
       </div>
     );
   }
@@ -132,7 +132,7 @@ export default function ChatPage() {
         {/* ─── Room List (left pane) ─── */}
         <div className={`${activeRoomId && !showMobileList ? "hidden lg:block" : "block"} lg:border-r lg:border-border lg:max-w-[360px] lg:w-full lg:overflow-y-auto`}>
           <div className="px-5 pt-6 lg:px-4 lg:pt-4">
-            <h1 className="font-headline text-2xl lg:text-xl text-navy">Messages</h1>
+            <h1 className="font-headline text-2xl lg:text-xl text-on-surface">Messages</h1>
           </div>
           <div className="px-5 lg:px-3 pb-6 pt-3 space-y-1">
             {rooms.length === 0 && (
@@ -148,16 +148,16 @@ export default function ChatPage() {
                   onClick={() => handleSelectRoom(room.match.room_id)}
                   className={`flex items-center gap-3 p-3 rounded-2xl transition-colors cursor-pointer ${
                     activeRoomId === room.match.room_id
-                      ? "bg-coral/5 border border-coral/20"
+                      ? "bg-primary/5 border border-primary/20"
                       : "hover:bg-white/60"
                   }`}
                 >
                   <div className="relative flex-shrink-0">
-                    <div className="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-coral/20 to-teal/10 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/10 flex items-center justify-center">
                       {room.match.other_user.primary_photo ? (
                         <img src={room.match.other_user.primary_photo} alt="" className="w-full h-full object-cover" />
                       ) : (
-                        <span className="text-xl font-headline text-navy">
+                        <span className="text-xl font-headline text-on-surface">
                           {room.match.other_user.display_name?.charAt(0) || "?"}
                       </span>
                     )}
@@ -167,10 +167,10 @@ export default function ChatPage() {
                   </span>
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-headline text-sm text-navy">{room.match.other_user.display_name}</h3>
+                    <h3 className="font-headline text-sm text-on-surface">{room.match.other_user.display_name}</h3>
                      <p className="text-xs text-muted-foreground truncate mt-0.5">
                        {isUserTyping(room.match.room_id, room.match.other_user.matrix_user_id)
-                         ? <span className="text-teal font-medium">Typing...</span>
+                         ? <span className="text-secondary font-medium">Typing...</span>
                          : lastMsg?.eventType === "missed_call" ? "📞 Missed call"
                          : lastMsg?.eventType === "call" ? "📞 Call"
                          : (lastMsg?.content?.body || "Say hello!")}
@@ -189,7 +189,7 @@ export default function ChatPage() {
         <div className={`${!activeRoomId || (activeRoomId && showMobileList) ? "hidden lg:flex lg:items-center lg:justify-center lg:flex-1" : "flex flex-col flex-1"}`}>
           {!activeRoomId ? (
             <div className="hidden lg:flex flex-col items-center justify-center text-muted-foreground gap-3">
-              <span className="text-5xl text-coral/30">💬</span>
+              <span className="text-5xl text-primary/30">💬</span>
               <p className="font-headline text-sm">Select a conversation</p>
               <p className="text-xs">Match with someone to start chatting</p>
             </div>
@@ -198,22 +198,22 @@ export default function ChatPage() {
               {/* Header */}
               <div className="flex items-center gap-3 px-5 py-3 border-b border-border bg-white/80 backdrop-blur">
                 <button onClick={() => setShowMobileList(true)} className="lg:hidden">
-                  <ChevronLeft className="w-5 h-5 text-navy" />
+                  <ChevronLeft className="w-5 h-5 text-on-surface" />
                 </button>
-                <div className="w-9 h-9 rounded-full overflow-hidden bg-gradient-to-br from-coral/20 to-teal/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-9 h-9 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/10 flex items-center justify-center flex-shrink-0">
                   {activeRoom.match.other_user.primary_photo ? (
                     <img src={activeRoom.match.other_user.primary_photo} alt="" className="w-full h-full object-cover" />
                   ) : (
-                    <span className="text-lg font-headline text-navy">
+                    <span className="text-lg font-headline text-on-surface">
                       {activeRoom.match.other_user.display_name?.charAt(0) || "?"}
                     </span>
                   )}
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-headline text-sm text-navy">{activeRoom.match.other_user.display_name}</h3>
+                  <h3 className="font-headline text-sm text-on-surface">{activeRoom.match.other_user.display_name}</h3>
                   <p className="text-[10px] flex items-center gap-1 text-muted-foreground">
                     {isUserTyping(activeRoomId, activeRoom.match.other_user.matrix_user_id) ? (
-                      <span className="text-teal font-medium">Typing...</span>
+                      <span className="text-secondary font-medium">Typing...</span>
                     ) : (
                       <>
                         <PresenceDot userId={activeRoom.match.other_user.user} serverLastActive={activeRoom.match.other_user.last_active} />
@@ -224,14 +224,14 @@ export default function ChatPage() {
                 </div>
                 <button
                   onClick={() => startCall(activeRoomId, false)}
-                  className="w-8 h-8 rounded-full bg-teal/10 flex items-center justify-center text-teal hover:bg-teal/20 transition-colors"
+                  className="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary hover:bg-secondary/20 transition-colors"
                   title="Voice call"
                 >
                   <Phone className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => startCall(activeRoomId, true)}
-                  className="w-8 h-8 rounded-full bg-coral/10 flex items-center justify-center text-coral hover:bg-coral/20 transition-colors"
+                  className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary/20 transition-colors"
                   title="Video call"
                 >
                   <Video className="w-4 h-4" />
@@ -266,15 +266,15 @@ export default function ChatPage() {
                           )}
                           <div className="flex justify-center my-2">
                             <div className="flex items-center gap-3 bg-white border border-border/60 rounded-2xl px-5 py-3 shadow-sm max-w-sm w-full">
-                              <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${isMissed ? "bg-red-50 text-red-500" : "bg-teal/10 text-teal"}`}>
+                              <div className={`w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 ${isMissed ? "bg-red-50 text-red-500" : "bg-secondary/10 text-secondary"}`}>
                                 {msg.callType === "video" ? (
-                                  <Video className={`w-5 h-5 ${isMissed ? "text-red-500" : "text-teal"}`} />
+                                  <Video className={`w-5 h-5 ${isMissed ? "text-red-500" : "text-secondary"}`} />
                                 ) : (
-                                  <Phone className={`w-5 h-5 ${isMissed ? "text-red-500" : "text-teal"}`} />
+                                  <Phone className={`w-5 h-5 ${isMissed ? "text-red-500" : "text-secondary"}`} />
                                 )}
                               </div>
                               <div className="flex-1 min-w-0">
-                                <p className={`text-xs font-headline ${isMissed ? "text-red-500" : "text-navy"}`}>
+                                <p className={`text-xs font-headline ${isMissed ? "text-red-500" : "text-on-surface"}`}>
                                   {isMissed ? "Missed call" : "Call"}
                                 </p>
                                 <p className="text-[10px] text-muted-foreground">
@@ -283,7 +283,7 @@ export default function ChatPage() {
                               </div>
                               <button
                                 onClick={() => startCall(activeRoomId, msg.callType === "video")}
-                                className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${isMissed ? "bg-red-50 text-red-500 hover:bg-red-100" : "bg-teal/10 text-teal hover:bg-teal/20"}`}
+                                className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 transition-colors ${isMissed ? "bg-red-50 text-red-500 hover:bg-red-100" : "bg-secondary/10 text-secondary hover:bg-secondary/20"}`}
                                 title={`Call back (${msg.callType})`}
                               >
                                 <Phone className="w-4 h-4" />
@@ -308,8 +308,8 @@ export default function ChatPage() {
                             <div
                               className={`px-4 py-2.5 text-sm leading-relaxed ${
                                 isMine
-                                  ? "bg-gradient-to-r from-coral to-orange-400 text-white "
-                                  : "bg-white border border-border text-navy "
+                                  ? "bg-gradient-to-r from-primary to-orange-400 text-white "
+                                  : "bg-white border border-border text-on-surface "
                               } ${
                                 consecutive && isMine
                                   ? "rounded-2xl rounded-br-sm"
@@ -362,7 +362,7 @@ export default function ChatPage() {
                   <button
                     onClick={handleSend}
                     disabled={!inputText.trim()}
-                    className="w-10 h-10 rounded-full bg-gradient-to-r from-coral to-orange-400 flex items-center justify-center flex-shrink-0 disabled:opacity-50"
+                    className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-orange-400 flex items-center justify-center flex-shrink-0 disabled:opacity-50"
                   >
                     <Send className="w-4 h-4 text-white" />
                   </button>

@@ -14,7 +14,7 @@ const events = [
 ];
 
 function PhotoPlaceholder({ name }: { name: string }) {
-  const colors = ["from-coral/20 to-teal/10", "from-rose-200 to-amber-100", "from-sky-200 to-indigo-100", "from-emerald-200 to-lime-100"];
+  const colors = ["from-primary/20 to-secondary/10", "from-rose-200 to-amber-100", "from-sky-200 to-indigo-100", "from-emerald-200 to-lime-100"];
   const color = colors[name.length % colors.length];
   return (
     <div className={`w-full h-full bg-gradient-to-br ${color} flex items-center justify-center text-3xl`}>
@@ -58,7 +58,7 @@ export default function DiscoverPage() {
       <div className="px-5 lg:px-8 pt-6 lg:pt-8 space-y-6 lg:space-y-8 lg:max-w-5xl lg:mx-auto">
         {/* Header */}
         <div>
-          <h1 className="font-headline text-2xl lg:text-3xl text-navy">
+          <h1 className="font-headline text-2xl lg:text-3xl text-on-surface">
             Discover what's happening near you
           </h1>
           <p className="text-muted-foreground text-sm lg:text-base mt-1">
@@ -70,7 +70,7 @@ export default function DiscoverPage() {
         {suggested.length > 0 && (
           <section>
             <div className="flex items-center justify-between mb-3">
-              <h2 className="font-headline text-sm text-navy uppercase tracking-widest">Suggested for You</h2>
+              <h2 className="font-headline text-sm text-on-surface uppercase tracking-widest">Suggested for You</h2>
               <span
                 className="text-xs text-primary font-semibold cursor-pointer hover:underline"
                 onClick={() => {
@@ -99,7 +99,7 @@ export default function DiscoverPage() {
                     )}
                   </div>
                   <div>
-                    <h3 className="font-headline text-xs text-navy leading-tight">
+                    <h3 className="font-headline text-xs text-on-surface leading-tight">
                       {profile.display_name}{profile.age ? `, ${profile.age}` : ""}
                     </h3>
                     {profile.location_name && (
@@ -108,7 +108,7 @@ export default function DiscoverPage() {
                       </p>
                     )}
                     {profile.common_interests_count > 0 && (
-                      <p className="text-[9px] text-teal font-semibold mt-1">
+                      <p className="text-[9px] text-secondary font-semibold mt-1">
                         {profile.common_interests_count} common interests
                       </p>
                     )}
@@ -123,7 +123,7 @@ export default function DiscoverPage() {
         <div className="space-y-4 lg:grid lg:grid-cols-3 lg:gap-4 lg:space-y-0">
           {latestMatch ? (
             <div className="lg:col-span-2 relative bg-white rounded-2xl border border-border overflow-hidden shadow-card">
-              <div className="h-44 lg:h-56 bg-gradient-to-br from-coral/20 to-teal/10 flex items-center justify-center relative">
+              <div className="h-44 lg:h-56 bg-gradient-to-br from-primary/20 to-secondary/10 flex items-center justify-center relative">
                 {latestMatch.user.primary_photo ? (
                   <img src={latestMatch.user.primary_photo} alt="" className="w-full h-full object-cover" />
                 ) : (
@@ -131,14 +131,14 @@ export default function DiscoverPage() {
                     {latestMatch.user.display_name.charAt(0).toUpperCase()}
                   </span>
                 )}
-                <span className="absolute top-3 left-3 bg-coral text-white text-[10px] font-headline uppercase tracking-wider px-2 py-1 rounded-lg flex items-center gap-1">
+                <span className="absolute top-3 left-3 bg-primary text-white text-[10px] font-headline uppercase tracking-wider px-2 py-1 rounded-lg flex items-center gap-1">
                   <Sparkles className="w-3 h-3" /> New Match
                 </span>
               </div>
               <div className="p-4 space-y-3">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-headline text-lg text-navy">
+                    <h3 className="font-headline text-lg text-on-surface">
                       {latestMatch.user.display_name}{latestMatch.user.age ? `, ${latestMatch.user.age}` : ""}
                     </h3>
                     {latestMatch.user.location_name && (
@@ -157,11 +157,11 @@ export default function DiscoverPage() {
                 {latestMatch.user.interests.length > 0 && (
                   <div className="flex gap-2">
                     {latestMatch.user.interests.map((tag: string) => (
-                      <span key={tag} className="text-[10px] bg-muted text-navy px-2.5 py-1 rounded-full">{tag}</span>
+                      <span key={tag} className="text-[10px] bg-muted text-on-surface px-2.5 py-1 rounded-full">{tag}</span>
                     ))}
                   </div>
                 )}
-                <p className="text-xs text-teal font-semibold">
+                <p className="text-xs text-secondary font-semibold">
                   {newMatchCount?.count ? `${newMatchCount.count} new match${newMatchCount.count > 1 ? "es" : ""}` : "Say hello!"}
                 </p>
               </div>
@@ -169,7 +169,7 @@ export default function DiscoverPage() {
           ) : feed.length > 0 ? (
             <div className="lg:col-span-2 relative bg-white rounded-2xl border border-border overflow-hidden shadow-card p-4 flex items-center justify-center">
               <div className="text-center space-y-2">
-                <h3 className="font-headline text-lg text-navy">Keep exploring</h3>
+                <h3 className="font-headline text-lg text-on-surface">Keep exploring</h3>
                 <p className="text-sm text-muted-foreground">Swipe through profiles to find your match</p>
               </div>
             </div>
@@ -184,7 +184,7 @@ export default function DiscoverPage() {
                 <span className="text-white text-xl">🔍</span>
               </div>
               <div className="lg:text-center">
-                <h3 className="font-headline text-sm text-navy">Discover More People</h3>
+                <h3 className="font-headline text-sm text-on-surface">Discover More People</h3>
                 <p className="text-xs text-muted-foreground">Find new connections</p>
               </div>
             </div>
@@ -195,7 +195,7 @@ export default function DiscoverPage() {
         {/* Upcoming Events — static for now */}
         <section>
           <div className="flex items-center justify-between mb-3">
-            <h2 className="font-headline text-sm text-navy uppercase tracking-widest">Upcoming Events</h2>
+            <h2 className="font-headline text-sm text-on-surface uppercase tracking-widest">Upcoming Events</h2>
             <span className="text-xs text-primary font-semibold cursor-pointer hover:underline">Explore All</span>
           </div>
           <div className="space-y-3 lg:grid lg:grid-cols-2 lg:gap-3 lg:space-y-0">
@@ -204,8 +204,8 @@ export default function DiscoverPage() {
                 <div className="w-14 h-14 rounded-xl bg-muted flex items-center justify-center text-2xl flex-shrink-0">{ev.img}</div>
                 <div className="flex-1 min-w-0">
                   <p className="text-[10px] text-muted-foreground">{ev.date} · {ev.time}</p>
-                  <h3 className="font-headline text-sm text-navy mt-0.5">{ev.title}</h3>
-                  <p className="text-[10px] text-teal font-semibold mt-1">{ev.attending} attending</p>
+                  <h3 className="font-headline text-sm text-on-surface mt-0.5">{ev.title}</h3>
+                  <p className="text-[10px] text-secondary font-semibold mt-1">{ev.attending} attending</p>
                 </div>
               </div>
             ))}
