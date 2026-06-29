@@ -1,38 +1,63 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: #f8f9fa;
-  --color-foreground: #191c1d;
+  --color-background: #fff8f5;
+  --color-foreground: #1e1b19;
   --color-card: #ffffff;
-  --color-card-foreground: #191c1d;
+  --color-card-foreground: #1e1b19;
   --color-popover: #ffffff;
-  --color-popover-foreground: #191c1d;
-  --color-primary: #ff5f6d;
+  --color-popover-foreground: #1e1b19;
+  --color-primary: #944a00;
   --color-primary-foreground: #ffffff;
-  --color-secondary: #1a1c2e;
+  --color-primary-container: #f28c38;
+  --color-on-primary-container: #602e00;
+  --color-primary-fixed: #ffdcc5;
+  --color-primary-fixed-dim: #ffb783;
+  --color-on-primary-fixed: #301400;
+  --color-secondary: #086878;
   --color-secondary-foreground: #ffffff;
-  --color-tertiary: #20c997;
+  --color-secondary-container: #a1ebfe;
+  --color-on-secondary-container: #136c7d;
+  --color-tertiary: #68577c;
   --color-tertiary-foreground: #ffffff;
-  --color-muted: #e7e8e9;
-  --color-muted-foreground: #594141;
-  --color-accent: #ff5f6d;
+  --color-tertiary-container: #b29ec7;
+  --color-on-tertiary-container: #443557;
+  --color-muted: #f5ece9;
+  --color-muted-foreground: #554337;
+  --color-accent: #944a00;
   --color-accent-foreground: #ffffff;
   --color-destructive: #ba1a1a;
   --color-destructive-foreground: #ffffff;
-  --color-border: #e1e3e4;
-  --color-input: #e1e3e4;
-  --color-ring: #ff5f6d;
-  --color-navy: #1a1c2e;
-  --color-teal: #20c997;
-  --color-coral: #ff5f6d;
-  --radius: 0.5rem;
+  --color-destructive-container: #ffdad6;
+  --color-on-destructive-container: #93000a;
+  --color-border: #dbc2b2;
+  --color-input: #e9e1dd;
+  --color-ring: #944a00;
+  --color-surface: #fff8f5;
+  --color-surface-variant: #e9e1dd;
+  --color-surface-dim: #e1d8d5;
+  --color-surface-bright: #fff8f5;
+  --color-surface-container: #f5ece9;
+  --color-surface-container-low: #fbf2ee;
+  --color-surface-container-high: #efe6e3;
+  --color-surface-container-highest: #e9e1dd;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-surface: #1e1b19;
+  --color-on-surface-variant: #554337;
+  --color-outline: #887365;
+  --color-outline-variant: #dbc2b2;
+  --color-inverse-surface: #342f2d;
+  --color-inverse-on-surface: #f8efeb;
+  --color-inverse-primary: #ffb783;
+  --color-surface-tint: #944a00;
+  --radius: 0.25rem;
 }
 
 @layer base {
   body {
-    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background-color: #f8f9fa;
-    color: #191c1d;
+    font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #fff8f5;
+    color: #1e1b19;
     min-height: 100dvh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -42,32 +67,32 @@
 @layer utilities {
   .font-headline {
     font-family: "Montserrat", system-ui, sans-serif;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: -0.01em;
   }
   .glass {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 248, 245, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(219, 194, 178, 0.4);
   }
   .glass-strong {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 248, 245, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(219, 194, 178, 0.5);
   }
   .shadow-glow {
-    box-shadow: 0 10px 40px rgba(255, 95, 109, 0.15);
+    box-shadow: 0 10px 40px rgba(148, 74, 0, 0.12);
   }
   .shadow-card {
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   }
   .gradient-sunset {
-    background: linear-gradient(135deg, #ff5f6d 0%, #ff8a65 100%);
+    background: linear-gradient(135deg, #944a00 0%, #f28c38 100%);
   }
   .gradient-match {
-    background: linear-gradient(135deg, #20c997 0%, #38d9a9 100%);
+    background: linear-gradient(135deg, #086878 0%, #30b8d0 100%);
   }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
