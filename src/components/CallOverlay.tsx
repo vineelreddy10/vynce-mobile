@@ -69,7 +69,7 @@ export default function CallOverlay({
       {/* Incoming call screen */}
       {incomingCall && (
         <>
-          <div className="w-24 h-24 rounded-full overflow-hidden bg-gradient-to-br from-coral/20 to-teal/10 mb-4 animate-pulse">
+          <div className="w-24 h-24 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/10 mb-4 animate-pulse">
             {otherUserPhoto ? (
               <img src={otherUserPhoto} alt="" className="w-full h-full object-cover" />
             ) : (
@@ -125,7 +125,7 @@ export default function CallOverlay({
           {/* Voice: avatar */}
           {callInfo.type === "voice" && (
             <div className="flex flex-col items-center z-10">
-              <div className="w-28 h-28 rounded-full overflow-hidden bg-gradient-to-br from-coral/20 to-teal/10 mb-4">
+              <div className="w-28 h-28 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/10 mb-4">
                 {otherUserPhoto ? (
                   <img src={otherUserPhoto} alt="" className="w-full h-full object-cover" />
                 ) : (
@@ -158,7 +158,7 @@ export default function CallOverlay({
             <button
               onClick={onToggleSpeaker}
               className={`w-14 h-14 rounded-full flex items-center justify-center text-white transition-colors ${
-                isSpeakerOn ? "bg-teal-500 hover:bg-teal-600" : "bg-gray-700 hover:bg-gray-600"
+                isSpeakerOn ? "bg-secondary hover:bg-secondary/80" : "bg-gray-700 hover:bg-gray-600"
               }`}
             >
               {isSpeakerOn ? <Volume2 className="w-5 h-5" /> : <VolumeX className="w-5 h-5" />}

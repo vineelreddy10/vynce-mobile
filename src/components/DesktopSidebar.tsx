@@ -28,7 +28,7 @@ export default function DesktopSidebar() {
         <div className="flex items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="text-xl">⚡</span>
-            <h1 className="font-headline text-lg text-navy tracking-tight">Vynce</h1>
+            <h1 className="font-headline text-lg text-on-surface tracking-tight">Vynce</h1>
           </div>
           <NavLink
             to="/notifications"
@@ -47,7 +47,7 @@ export default function DesktopSidebar() {
               key={to}
               to={to}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                active ? "bg-coral/10 text-coral font-headline" : "text-muted-foreground hover:bg-muted hover:text-navy"
+                active ? "bg-primary/10 text-primary font-headline" : "text-muted-foreground hover:bg-muted hover:text-on-surface"
               }`}
             >
               <Icon className="h-5 w-5" strokeWidth={active ? 2.5 : 1.5} />

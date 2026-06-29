@@ -13,7 +13,7 @@ export function PresenceDot({
   return (
     <span
       className={`inline-block w-3 h-3 rounded-full border-2 border-background ${
-        online ? "bg-teal" : "bg-muted-foreground/40"
+        online ? "bg-secondary" : "bg-muted-foreground/40"
       }`}
     />
   );
@@ -30,7 +30,7 @@ export function PresenceText({
   const presence = useUserPresence(userId, serverLastActive);
   const online = presence ? Date.now() - new Date(presence).getTime() < 2 * 60 * 1000 : false;
   return (
-    <span className={online ? "text-teal" : "text-muted-foreground"}>
+    <span className={online ? "text-secondary" : "text-muted-foreground"}>
       {online ? "Online" : lastOnlineText(presence)}
     </span>
   );

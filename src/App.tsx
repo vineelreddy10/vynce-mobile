@@ -102,7 +102,7 @@ function SocketLifecycle() {
 
   return toast ? (
     <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 max-w-xs w-full px-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
-      <div className="bg-navy text-white rounded-2xl px-4 py-3 shadow-lg">
+      <div className="bg-primary text-white rounded-2xl px-4 py-3 shadow-lg">
         <p className="font-headline text-sm font-semibold">{toast.title}</p>
         <p className="text-xs text-white/80 mt-0.5">{toast.body}</p>
       </div>

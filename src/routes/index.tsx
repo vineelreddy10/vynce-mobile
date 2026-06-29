@@ -13,6 +13,7 @@ import GroupDetailPage from "../pages/GroupDetailPage";
 import CreateGroupPage from "../pages/CreateGroupPage";
 import EventsPage from "../pages/EventsPage";
 import EventDetailPage from "../pages/EventDetailPage";
+import CreateEventPage from "../pages/CreateEventPage";
 import ProfilePage from "../pages/ProfilePage";
 import UserProfilePage from "../pages/UserProfilePage";
 import SettingsPage from "../pages/SettingsPage";
@@ -46,7 +47,9 @@ export const router = createBrowserRouter([
           { path: "groups/create", element: <CreateGroupPage /> },
           { path: "groups/:groupId", element: <GroupDetailPage /> },
           { path: "events", element: <EventsPage /> },
+          { path: "events/create", element: <CreateEventPage /> },
           { path: "events/:eventId", element: <EventDetailPage /> },
+          { path: "events/:eventId/edit", element: <CreateEventPage /> },
           { path: "profile/:userId", element: <UserProfilePage /> },
           { path: "profile", element: <ProfilePage /> },
           { path: "chat", element: <ChatPage /> },

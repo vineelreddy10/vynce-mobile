@@ -183,7 +183,7 @@ export default function EditProfileSheet({ profile, onClose, onSaved }: Props) {
       <div className="fixed inset-0 bg-black/40 z-50" onClick={onClose} />
       <div className="fixed inset-x-0 bottom-0 z-50 bg-white rounded-t-3xl shadow-2xl max-h-[85dvh] flex flex-col lg:inset-x-auto lg:inset-y-0 lg:right-0 lg:w-[420px] lg:max-h-none lg:rounded-l-3xl lg:rounded-t-none overflow-hidden animate-slide-up">
         <div className="flex items-center justify-between px-5 py-4 border-b border-border flex-shrink-0">
-          <h2 className="font-headline text-lg text-navy">Edit Profile</h2>
+          <h2 className="font-headline text-lg text-on-surface">Edit Profile</h2>
           <button onClick={onClose} className="w-8 h-8 rounded-full bg-muted flex items-center justify-center hover:bg-border transition-colors">
             <X className="w-4 h-4 text-muted-foreground" />
           </button>
@@ -195,7 +195,7 @@ export default function EditProfileSheet({ profile, onClose, onSaved }: Props) {
               key={t}
               onClick={() => setTab(t)}
               className={`flex-1 py-3 text-xs font-headline uppercase tracking-wider border-b-2 transition-colors ${
-                tab === t ? "border-coral text-coral" : "border-transparent text-muted-foreground hover:text-navy"
+                tab === t ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-on-surface"
               }`}
             >
               {t}
@@ -222,9 +222,9 @@ export default function EditProfileSheet({ profile, onClose, onSaved }: Props) {
                     onDragLeave={() => setDragOverIdx(null)}
                     className={`flex items-center gap-3 bg-white rounded-xl border p-3 transition-all ${
                       dragIdx !== null && dragOverIdx === i && dragIdx !== dragOverIdx
-                        ? "border-coral shadow-md scale-[1.02]"
+                        ? "border-primary shadow-md scale-[1.02]"
                         : "border-border"
-                    } ${p.is_primary ? "ring-1 ring-coral/20" : ""}`}
+                    } ${p.is_primary ? "ring-1 ring-primary/20" : ""}`}
                   >
                     {/* Drag handle */}
                     <div className="cursor-grab active:cursor-grabbing text-muted-foreground/40 hover:text-muted-foreground transition-colors touch-none">
@@ -239,13 +239,13 @@ export default function EditProfileSheet({ profile, onClose, onSaved }: Props) {
                     {/* Info + actions */}
                     <div className="flex-1 min-w-0 flex items-center justify-between gap-2">
                       <div className="min-w-0">
-                        <p className="text-sm font-medium text-navy truncate">
+                        <p className="text-sm font-medium text-on-surface truncate">
                           {p.is_primary ? "Primary Photo" : `Photo ${i + 1}`}
                         </p>
                         {!p.is_primary && (
                           <button
                             onClick={() => handleSetPrimary(p.name)}
-                            className="text-[11px] text-coral hover:text-coral/80 hover:underline mt-0.5 transition-colors"
+                            className="text-[11px] text-primary hover:text-primary/80 hover:underline mt-0.5 transition-colors"
                           >
                             <Star className="w-3 h-3 inline mr-0.5 -mt-0.5" />
                             Make primary
@@ -293,23 +293,23 @@ export default function EditProfileSheet({ profile, onClose, onSaved }: Props) {
           {tab === "Basics" && (
             <div className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-xs font-headline text-navy uppercase tracking-wider">Display Name</label>
+                <label className="text-xs font-headline text-on-surface uppercase tracking-wider">Display Name</label>
                 <input
                   type="text"
                   value={displayName}
                   onChange={(e) => setDisplayName(e.target.value)}
-                  className="w-full rounded-xl border border-border px-4 py-2.5 text-sm text-navy bg-white placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral/50 transition-all"
+                  className="w-full rounded-xl border border-border px-4 py-2.5 text-sm text-on-surface bg-white placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all"
                   placeholder="Your display name"
                 />
               </div>
               <div className="space-y-1.5">
-                <label className="text-xs font-headline text-navy uppercase tracking-wider">Bio</label>
+                <label className="text-xs font-headline text-on-surface uppercase tracking-wider">Bio</label>
                 <textarea
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
                   rows={4}
                   maxLength={500}
-                  className="w-full rounded-xl border border-border px-4 py-2.5 text-sm text-navy bg-white placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral/50 transition-all resize-none"
+                  className="w-full rounded-xl border border-border px-4 py-2.5 text-sm text-on-surface bg-white placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all resize-none"
                   placeholder="Tell others about yourself..."
                 />
                 <p className="text-[10px] text-muted-foreground text-right">{bio.length}/500</p>
@@ -333,7 +333,7 @@ export default function EditProfileSheet({ profile, onClose, onSaved }: Props) {
                     type="text"
                     value={interestSearch}
                     onChange={(e) => setInterestSearch(e.target.value)}
-                    className="w-full rounded-xl border border-border pl-4 pr-10 py-2.5 text-sm text-navy bg-white placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral/50 transition-all"
+                    className="w-full rounded-xl border border-border pl-4 pr-10 py-2.5 text-sm text-on-surface bg-white placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all"
                     placeholder="Search interests..."
                   />
                 </div>
@@ -349,14 +349,14 @@ export default function EditProfileSheet({ profile, onClose, onSaved }: Props) {
                       key={interest.title}
                       onClick={() => handleToggleInterest(interest.title)}
                       className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm transition-colors ${
-                        isSelected ? "bg-coral/10 text-coral font-medium" : "bg-white border border-border text-navy hover:bg-muted"
+                        isSelected ? "bg-primary/10 text-primary font-medium" : "bg-white border border-border text-on-surface hover:bg-muted"
                       }`}
                     >
                       <div className="flex items-center gap-2">
                         <span>{interest.title}</span>
                         <span className="text-[10px] text-muted-foreground">{interest.category}</span>
                       </div>
-                      {isSelected && <Check className="w-4 h-4 text-coral" />}
+                      {isSelected && <Check className="w-4 h-4 text-primary" />}
                     </button>
                   );
                 })}
@@ -380,21 +380,21 @@ export default function EditProfileSheet({ profile, onClose, onSaved }: Props) {
               {prompts.map((p, i) => (
                 <div key={i} className="bg-muted rounded-xl p-4 space-y-2">
                   <div className="flex items-center justify-between">
-                    <p className="text-xs text-coral font-headline">{p.prompt}</p>
+                    <p className="text-xs text-primary font-headline">{p.prompt}</p>
                     <button onClick={() => handleRemovePrompt(i)} className="p-1 rounded hover:bg-border transition-colors">
                       <Trash2 className="w-3.5 h-3.5 text-muted-foreground" />
                     </button>
                   </div>
-                  <p className="text-sm text-navy">{p.answer}</p>
+                  <p className="text-sm text-on-surface">{p.answer}</p>
                 </div>
               ))}
 
               <div className="border border-border rounded-xl p-4 space-y-3">
-                <p className="text-xs font-headline text-navy uppercase tracking-wider">Add Prompt</p>
+                <p className="text-xs font-headline text-on-surface uppercase tracking-wider">Add Prompt</p>
                 <select
                   value={newPrompt}
                   onChange={(e) => setNewPrompt(e.target.value)}
-                  className="w-full rounded-xl border border-border px-4 py-2.5 text-sm text-navy bg-white focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral/50 transition-all"
+                  className="w-full rounded-xl border border-border px-4 py-2.5 text-sm text-on-surface bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all"
                 >
                   <option value="">Select a prompt...</option>
                   {PROMPT_QUESTIONS.filter((q) => !prompts.some((p) => p.prompt === q)).map((q) => (
@@ -405,13 +405,13 @@ export default function EditProfileSheet({ profile, onClose, onSaved }: Props) {
                   value={newAnswer}
                   onChange={(e) => setNewAnswer(e.target.value)}
                   rows={2}
-                  className="w-full rounded-xl border border-border px-4 py-2.5 text-sm text-navy bg-white placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral/50 transition-all resize-none"
+                  className="w-full rounded-xl border border-border px-4 py-2.5 text-sm text-on-surface bg-white placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all resize-none"
                   placeholder="Your answer..."
                 />
                 <button
                   onClick={handleAddPrompt}
                   disabled={!newPrompt || !newAnswer}
-                  className="w-full py-2 rounded-full border border-coral text-coral text-sm font-headline font-semibold hover:bg-coral/5 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-1.5"
+                  className="w-full py-2 rounded-full border border-primary text-primary text-sm font-headline font-semibold hover:bg-primary/5 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-1.5"
                 >
                   <Plus className="w-4 h-4" /> Add
                 </button>

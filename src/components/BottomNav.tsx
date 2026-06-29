@@ -52,13 +52,13 @@ export default function BottomNav() {
                 )}
                 <Icon
                   className={`h-5 w-5 transition-all ${
-                    active ? "text-coral" : "text-muted-foreground/50"
+                    active ? "text-primary" : "text-muted-foreground/50"
                   }`}
                   strokeWidth={active ? 2.5 : 1.5}
                 />
                 <span
                   className={`text-[10px] font-headline font-semibold uppercase tracking-wider transition-colors ${
-                    active ? "text-coral" : "text-muted-foreground/50"
+                    active ? "text-primary" : "text-muted-foreground/50"
                   }`}
                 >
                   {shortLabel(label)}
@@ -77,13 +77,13 @@ export default function BottomNav() {
             )}
             <Ellipsis
               className={`h-5 w-5 transition-all ${
-                isSecondaryActive ? "text-coral" : "text-muted-foreground/50"
+                isSecondaryActive ? "text-primary" : "text-muted-foreground/50"
               }`}
               strokeWidth={isSecondaryActive ? 2.5 : 1.5}
             />
             <span
               className={`text-[10px] font-headline font-semibold uppercase tracking-wider transition-colors ${
-                isSecondaryActive ? "text-coral" : "text-muted-foreground/50"
+                isSecondaryActive ? "text-primary" : "text-muted-foreground/50"
               }`}
             >
               More
@@ -114,7 +114,7 @@ export default function BottomNav() {
 
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-3 border-b border-border">
-          <h2 className="text-sm font-headline font-semibold text-navy uppercase tracking-wider">
+          <h2 className="text-sm font-headline font-semibold text-on-surface uppercase tracking-wider">
             More
           </h2>
           <button
@@ -136,8 +136,8 @@ export default function BottomNav() {
                 onClick={handleSheetNav}
                 className={`flex items-center gap-4 px-4 py-3 rounded-xl text-sm font-medium transition-all ${
                   active
-                    ? "bg-coral/10 text-coral"
-                    : "text-muted-foreground hover:bg-muted hover:text-navy"
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground hover:bg-muted hover:text-on-surface"
                 }`}
               >
                 <Icon className="h-5 w-5 shrink-0" strokeWidth={active ? 2.5 : 1.5} />
