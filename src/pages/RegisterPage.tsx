@@ -6,7 +6,7 @@ import { register } from "../api/auth";
 function Input({ label, type, id, value, onChange, placeholder, max }: any) {
   return (
     <div>
-      <label htmlFor={id} className="block text-xs font-semibold text-navy mb-1.5 uppercase tracking-wider">
+      <label htmlFor={id} className="block text-xs font-semibold text-on-surface mb-1.5 uppercase tracking-wider">
         {label}
       </label>
       <input id={id} type={type} value={value} onChange={onChange} placeholder={placeholder} max={max}
@@ -126,7 +126,7 @@ export default function RegisterPage() {
                 onChange={update("birth_date")} max={maxDate} />
 
               <div>
-                <label htmlFor="gender" className="block text-xs font-semibold text-navy mb-1.5 uppercase tracking-wider">Gender</label>
+                <label htmlFor="gender" className="block text-xs font-semibold text-on-surface mb-1.5 uppercase tracking-wider">Gender</label>
                 <select id="gender" value={form.gender} onChange={update("gender")}
                   className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all">
                   <option value="">Select...</option>
@@ -195,7 +195,7 @@ export default function RegisterPage() {
               <Input label="Birth Date" type="date" id="dob_desk" value={form.birth_date}
                 onChange={update("birth_date")} max={maxDate} />
               <div>
-                <label htmlFor="gender_desk" className="block text-xs font-semibold text-navy mb-1.5 uppercase tracking-wider">Gender</label>
+                <label htmlFor="gender_desk" className="block text-xs font-semibold text-on-surface mb-1.5 uppercase tracking-wider">Gender</label>
                 <select id="gender_desk" value={form.gender} onChange={update("gender")}
                   className="w-full rounded-xl border border-border bg-background px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all">
                   <option value="">Select...</option>
