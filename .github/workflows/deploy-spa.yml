@@ -1,0 +1,42 @@
+name: Build and Deploy SPA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "package.json"
+      - "vite.config.ts"
+      - ".github/workflows/deploy-spa.yml"
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build SPA
+        run: VITE_API_URL="" npm run build
+        env:
+          CI: false
+
+      - name: Deploy to VPS
+        uses: easingthemes/ssh-deploy@v5
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.VPS_SSH_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          SOURCE: "dist/"
+          REMOTE_HOST: "91.107.206.65"
+          REMOTE_USER: "root"
+          TARGET: "/srv/vynce/vynce-mobile/dist"
+          EXCLUDE: ""
