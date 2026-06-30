@@ -30,6 +30,11 @@ jobs:
         env:
           CI: false
 
+      - name: Add VPS to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H 91.107.206.65 >> ~/.ssh/known_hosts
+
       - name: Deploy to VPS
         uses: easingthemes/ssh-deploy@v5
         with:
@@ -39,4 +44,3 @@ jobs:
           REMOTE_HOST: "91.107.206.65"
           REMOTE_USER: "root"
           TARGET: "/srv/vynce/vynce-mobile/dist"
-          EXCLUDE: ""
